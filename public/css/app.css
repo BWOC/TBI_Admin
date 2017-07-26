@@ -1,0 +1,15 @@
+.box-body {
+  padding: 30px 10px; }
+
+.btn-google-login {
+  display: block;
+  width: 217px;
+  height: 40px;
+  background: url(../images/btn-login-google.png) no-repeat;
+  background-size: 217px 40px;
+  text-indent: -999em;
+  margin: 0 auto; }
+  .btn-google-login:hover {
+    opacity: .8; }
+
+/*# sourceMappingURL=app.css.map */
