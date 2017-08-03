@@ -179,7 +179,10 @@ return [
         /*
         * Other Service Providers...
         */
+        if ( env( 'APP_ENV' ) === 'local' )
+        {
         Barryvdh\Debugbar\ServiceProvider::class,
+        }
     ],
 
     /*
@@ -238,8 +241,10 @@ return [
        /*
         * Other Aliases...
         */
-
+        if ( env( 'APP_ENV' ) === 'local' )
+        {
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        }
     ],
 
 ];
