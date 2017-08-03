@@ -149,6 +149,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        
 
         /*
          * Application Service Providers...
@@ -178,7 +179,7 @@ return [
         /*
         * Other Service Providers...
         */
-
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -238,6 +239,7 @@ return [
         * Other Aliases...
         */
 
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
