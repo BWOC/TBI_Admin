@@ -1,6 +1,6 @@
 <?php
 
-return [
+$results = [
 
     /*
     |--------------------------------------------------------------------------
@@ -179,10 +179,6 @@ return [
         /*
         * Other Service Providers...
         */
-        if ( env( 'APP_ENV' ) === 'local' )
-        {
-        Barryvdh\Debugbar\ServiceProvider::class,
-        }
     ],
 
     /*
@@ -241,10 +237,13 @@ return [
        /*
         * Other Aliases...
         */
-        if ( env( 'APP_ENV' ) === 'local' )
-        {
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        }
     ],
 
 ];
+
+if ( env( 'APP_ENV' ) === 'local' )
+{
+    $results['providers'][] = 'Barryvdh\Debugbar\ServiceProvider';
+    $results['aliases'][] = 'Barryvdh\Debugbar\Facade';
+}
+return $results;
