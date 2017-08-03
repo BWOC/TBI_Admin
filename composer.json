@@ -17,7 +17,7 @@
         "backpack/newscrud": "^2.1",
         "backpack/permissionmanager": "^2.1",
         "creativeorange/gravatar": "^1.0",
-        "laravel/socialite": "^3.0",
+        "laravel/socialite": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
