@@ -30,6 +30,23 @@ class ProgramCrudController extends CrudController
 
         $this->crud->setFromDb();
 
+        $this->crud->addColumn([
+            'name' => 'title',
+            'label' => 'Title',
+            'type' => 'text'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'date_start',
+            'label' => 'Start',
+            'type' => 'text'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'registration_open',
+            'label' => 'Registration',
+            'type' => 'boolean',
+            'options' => [0 => 'Closed', 1 => 'Open']
+        ]);
+
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');

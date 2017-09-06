@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Applicant extends Model
+class ApplicationLiability extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Applicant extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tbi_applicants';
-    protected $primaryKey = 'id';
-    public $timestamps = true;
-    protected $guarded = ['id','applicant_id'];
-    protected $fillable = ['first_name','last_name','email_address','birthdate'];
+    protected $table = 'tbi_application_liability';
+    // protected $primaryKey = 'id';
+    // public $timestamps = false;
+    // protected $guarded = ['id'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -28,30 +28,15 @@ class Applicant extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function getFullNameAttribute() 
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
 
-    public function getApplicantAttribute() 
-    {
-        $applicantId = $this->applicant_id;
-        $fullName = $this->first_name . ' ' . $this->last_name;
-        return "$fullName<br>Applicant ID: $applicantId<br><a href=\"mailto:$this->email_address\">$this->email_address</a>";
-    }
-
-    public function showFullName()
-    {
-        return $this->fresh()->fullname; // make sure you call fresh instance or you'll get an error that fullname is not found or something like that...
-    }
-    
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function application() {
-        return $this->hasOne('App\Models\Application','applicant_id','id');
+    public function application()
+    {
+        return $this->belongsTo('App\Models\Application','application_id','id');
     }
     /*
     |--------------------------------------------------------------------------

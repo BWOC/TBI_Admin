@@ -107,16 +107,16 @@
         },
         {
             "name": "backpack/base",
-            "version": "0.7.21",
+            "version": "0.7.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Base.git",
-                "reference": "5a7a56715ca63cd46bafe984dfeb5c6d4791d77d"
+                "reference": "eca3f25caf10e35c3741055522041ad6bec68f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/5a7a56715ca63cd46bafe984dfeb5c6d4791d77d",
-                "reference": "5a7a56715ca63cd46bafe984dfeb5c6d4791d77d",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/eca3f25caf10e35c3741055522041ad6bec68f60",
+                "reference": "eca3f25caf10e35c3741055522041ad6bec68f60",
                 "shasum": ""
             },
             "require": {
@@ -162,20 +162,20 @@
                 "backpack",
                 "base"
             ],
-            "time": "2017-07-18T14:32:38+00:00"
+            "time": "2017-08-11T05:04:18+00:00"
         },
         {
             "name": "backpack/crud",
-            "version": "3.2.13",
+            "version": "3.2.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "1408d81179eeb96140a9574445025b2c9fcadd13"
+                "reference": "d52e867663f6313297c802bd708486f69a62a2d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/1408d81179eeb96140a9574445025b2c9fcadd13",
-                "reference": "1408d81179eeb96140a9574445025b2c9fcadd13",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/d52e867663f6313297c802bd708486f69a62a2d8",
+                "reference": "d52e867663f6313297c802bd708486f69a62a2d8",
                 "shasum": ""
             },
             "require": {
@@ -226,20 +226,20 @@
                 "read",
                 "update"
             ],
-            "time": "2017-07-07T05:10:25+00:00"
+            "time": "2017-08-11T05:07:31+00:00"
         },
         {
             "name": "backpack/logmanager",
-            "version": "2.3.14",
+            "version": "2.3.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/LogManager.git",
-                "reference": "25dd4a18a91d628336497681507323bb34b4db68"
+                "reference": "3d64f54ce8b2431e84b7611ffead8f27fa6c4696"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/LogManager/zipball/25dd4a18a91d628336497681507323bb34b4db68",
-                "reference": "25dd4a18a91d628336497681507323bb34b4db68",
+                "url": "https://api.github.com/repos/Laravel-Backpack/LogManager/zipball/3d64f54ce8b2431e84b7611ffead8f27fa6c4696",
+                "reference": "3d64f54ce8b2431e84b7611ffead8f27fa6c4696",
                 "shasum": ""
             },
             "require": {
@@ -283,7 +283,7 @@
                 "log manager",
                 "logs"
             ],
-            "time": "2017-07-10T05:23:10+00:00"
+            "time": "2017-08-11T05:19:55+00:00"
         },
         {
             "name": "backpack/menucrud",
@@ -397,16 +397,16 @@
         },
         {
             "name": "backpack/pagemanager",
-            "version": "1.1.19",
+            "version": "1.1.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PageManager.git",
-                "reference": "04ab25a58eb3b9470a909e0374b6cdfb83fff1a3"
+                "reference": "39a5a8f37eebf8d923ef7ed1edce66a955834d04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/04ab25a58eb3b9470a909e0374b6cdfb83fff1a3",
-                "reference": "04ab25a58eb3b9470a909e0374b6cdfb83fff1a3",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PageManager/zipball/39a5a8f37eebf8d923ef7ed1edce66a955834d04",
+                "reference": "39a5a8f37eebf8d923ef7ed1edce66a955834d04",
                 "shasum": ""
             },
             "require": {
@@ -459,20 +459,20 @@
                 "presentation website",
                 "wordpress"
             ],
-            "time": "2017-07-18T14:35:05+00:00"
+            "time": "2017-08-11T05:01:05+00:00"
         },
         {
             "name": "backpack/permissionmanager",
-            "version": "2.1.18",
+            "version": "2.1.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/PermissionManager.git",
-                "reference": "afe54eae58ace53ded29ee36bb8ca522297b3dbd"
+                "reference": "c9604481896169d33855978c15bdb332f2a5fe6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/afe54eae58ace53ded29ee36bb8ca522297b3dbd",
-                "reference": "afe54eae58ace53ded29ee36bb8ca522297b3dbd",
+                "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/c9604481896169d33855978c15bdb332f2a5fe6b",
+                "reference": "c9604481896169d33855978c15bdb332f2a5fe6b",
                 "shasum": ""
             },
             "require": {
@@ -531,20 +531,20 @@
                 "updivision",
                 "users roles admin"
             ],
-            "time": "2017-07-06T05:18:06+00:00"
+            "time": "2017-08-11T05:27:33+00:00"
         },
         {
             "name": "backpack/settings",
-            "version": "2.0.19",
+            "version": "2.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Settings.git",
-                "reference": "8c756046d5c6a580dfdf516abe6680c305399977"
+                "reference": "d2b10c24ce55d9503d8a59172ffa33c05b7c96d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Settings/zipball/8c756046d5c6a580dfdf516abe6680c305399977",
-                "reference": "8c756046d5c6a580dfdf516abe6680c305399977",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Settings/zipball/d2b10c24ce55d9503d8a59172ffa33c05b7c96d9",
+                "reference": "d2b10c24ce55d9503d8a59172ffa33c05b7c96d9",
                 "shasum": ""
             },
             "require": {
@@ -590,20 +590,20 @@
                 "tabacitu",
                 "updivision"
             ],
-            "time": "2017-07-06T05:28:37+00:00"
+            "time": "2017-08-11T05:38:23+00:00"
         },
         {
             "name": "barryvdh/elfinder-flysystem-driver",
-            "version": "v0.2.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/elfinder-flysystem-driver.git",
-                "reference": "61d70d94786e12eecdfb97de289ffa5c33c521e5"
+                "reference": "1f323056495fdce019b6ef1621be697f2945c609"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/elfinder-flysystem-driver/zipball/61d70d94786e12eecdfb97de289ffa5c33c521e5",
-                "reference": "61d70d94786e12eecdfb97de289ffa5c33c521e5",
+                "url": "https://api.github.com/repos/barryvdh/elfinder-flysystem-driver/zipball/1f323056495fdce019b6ef1621be697f2945c609",
+                "reference": "1f323056495fdce019b6ef1621be697f2945c609",
                 "shasum": ""
             },
             "require": {
@@ -646,7 +646,7 @@
                 "elfinder",
                 "filesystem"
             ],
-            "time": "2016-04-05T14:47:48+00:00"
+            "time": "2017-07-08T17:59:38+00:00"
         },
         {
             "name": "barryvdh/laravel-elfinder",
@@ -1697,16 +1697,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.31",
+            "version": "v5.4.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "fc1afa6b981cadbe3be8be65b49ca82e3eb9b9c9"
+                "reference": "b8300578d159199b1195413b67318c79068cd24d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/fc1afa6b981cadbe3be8be65b49ca82e3eb9b9c9",
-                "reference": "fc1afa6b981cadbe3be8be65b49ca82e3eb9b9c9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b8300578d159199b1195413b67318c79068cd24d",
+                "reference": "b8300578d159199b1195413b67318c79068cd24d",
                 "shasum": ""
             },
             "require": {
@@ -1822,7 +1822,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-08-02T15:24:31+00:00"
+            "time": "2017-08-03T12:59:42+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -1942,16 +1942,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.40",
+            "version": "1.0.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "3828f0b24e2c1918bb362d57a53205d6dc8fde61"
+                "reference": "f400aa98912c561ba625ea4065031b7a41e5a155"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3828f0b24e2c1918bb362d57a53205d6dc8fde61",
-                "reference": "3828f0b24e2c1918bb362d57a53205d6dc8fde61",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f400aa98912c561ba625ea4065031b7a41e5a155",
+                "reference": "f400aa98912c561ba625ea4065031b7a41e5a155",
                 "shasum": ""
             },
             "require": {
@@ -1972,13 +1972,13 @@
                 "league/flysystem-aws-s3-v3": "Allows you to use S3 storage with AWS SDK v3",
                 "league/flysystem-azure": "Allows you to use Windows Azure Blob storage",
                 "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
-                "league/flysystem-copy": "Allows you to use Copy.com storage",
                 "league/flysystem-eventable-filesystem": "Allows you to use EventableFilesystem",
                 "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
                 "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
                 "league/flysystem-webdav": "Allows you to use WebDAV storage",
                 "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
-                "spatie/flysystem-dropbox": "Allows you to use Dropbox storage"
+                "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
+                "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
             },
             "type": "library",
             "extra": {
@@ -2021,7 +2021,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-04-28T10:15:08+00:00"
+            "time": "2017-08-06T17:41:04+00:00"
         },
         {
             "name": "league/flysystem-cached-adapter",
@@ -2597,16 +2597,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.6.1",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "4ae32dd9ab8860a4bbd750ad269cba7f06f7934e"
+                "reference": "0ef23d1b10cf1bc576e9d865a7e9c47982c5715e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/4ae32dd9ab8860a4bbd750ad269cba7f06f7934e",
-                "reference": "4ae32dd9ab8860a4bbd750ad269cba7f06f7934e",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/0ef23d1b10cf1bc576e9d865a7e9c47982c5715e",
+                "reference": "0ef23d1b10cf1bc576e9d865a7e9c47982c5715e",
                 "shasum": ""
             },
             "require": {
@@ -2675,7 +2675,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2017-03-26T20:37:53+00:00"
+            "time": "2017-08-04T13:39:04+00:00"
         },
         {
             "name": "spatie/db-dumper",
@@ -2845,16 +2845,16 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.26",
+            "version": "2.1.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "2a4a721dcf8399a2c09f986a1b38eda895d12680"
+                "reference": "9a2f021a6285d04412bae1caf2400f6ff7b578a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/2a4a721dcf8399a2c09f986a1b38eda895d12680",
-                "reference": "2a4a721dcf8399a2c09f986a1b38eda895d12680",
+                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/9a2f021a6285d04412bae1caf2400f6ff7b578a7",
+                "reference": "9a2f021a6285d04412bae1caf2400f6ff7b578a7",
                 "shasum": ""
             },
             "require": {
@@ -2899,7 +2899,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2017-07-17T05:37:56+00:00"
+            "time": "2017-08-10T00:50:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3852,16 +3852,16 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "1.1.9",
+            "version": "1.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "c3d93e43e81aeba094e2cb44b13b5c54c2dca3aa"
+                "reference": "494cdb635240a885a505e0a7d7ebe3ced3f43b9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/c3d93e43e81aeba094e2cb44b13b5c54c2dca3aa",
-                "reference": "c3d93e43e81aeba094e2cb44b13b5c54c2dca3aa",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/494cdb635240a885a505e0a7d7ebe3ced3f43b9c",
+                "reference": "494cdb635240a885a505e0a7d7ebe3ced3f43b9c",
                 "shasum": ""
             },
             "require": {
@@ -3905,7 +3905,7 @@
                 "request",
                 "view"
             ],
-            "time": "2017-04-26T05:13:41+00:00"
+            "time": "2017-08-11T04:57:12+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -4371,22 +4371,22 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.2.0",
+            "version": "3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "46f7e8bb075036c92695b15a1ddb6971c751e585"
+                "reference": "4aada1f93c72c35e22fb1383b47fee43b8f1d157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/46f7e8bb075036c92695b15a1ddb6971c751e585",
-                "reference": "46f7e8bb075036c92695b15a1ddb6971c751e585",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/4aada1f93c72c35e22fb1383b47fee43b8f1d157",
+                "reference": "4aada1f93c72c35e22fb1383b47fee43b8f1d157",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5",
                 "phpdocumentor/reflection-common": "^1.0@dev",
-                "phpdocumentor/type-resolver": "^0.4.0",
+                "phpdocumentor/type-resolver": "^0.3.0",
                 "webmozart/assert": "^1.0"
             },
             "require-dev": {
@@ -4412,20 +4412,20 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-07-15T11:38:20+00:00"
+            "time": "2017-08-08T06:39:58+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "0.4.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7"
+                "reference": "fb3933512008d8162b3cdf9e18dba9309b7c3773"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9c977708995954784726e25d0cd1dddf4e65b0f7",
-                "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/fb3933512008d8162b3cdf9e18dba9309b7c3773",
+                "reference": "fb3933512008d8162b3cdf9e18dba9309b7c3773",
                 "shasum": ""
             },
             "require": {
@@ -4459,7 +4459,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2017-07-14T14:27:02+00:00"
+            "time": "2017-06-03T08:32:36+00:00"
         },
         {
             "name": "phpspec/prophecy",

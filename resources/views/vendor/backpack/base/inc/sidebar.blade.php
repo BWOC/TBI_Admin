@@ -24,10 +24,15 @@
           <li class="treeview">
               <a href="#"><i class="fa fa-graduation-cap"></i> <span>Admissions</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/applications') }}"><i class="fa fa-users"></i> <span>Applications</span></a></li>
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/application?archive=false') }}"><i class="fa fa-users"></i> <span>Applications</span></a></li>
               </ul>
           </li>
-
+          <li class="treeview">
+              <a href="#"><i class="fa fa-university"></i> <span>Academics</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/program') }}"><i class="fa fa-road"></i> <span>Programs</span></a></li>
+              </ul>
+          </li>
           <!--li><a href="{{ url(config('backpack.base.route_prefix').'/monster') }}"><i class="fa fa-optin-monster"></i> <span>Monsters</span></a></li-->
 
           <!--li class="treeview">

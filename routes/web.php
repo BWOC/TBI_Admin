@@ -30,7 +30,8 @@ Route::group([
 ], function () {
     // CRUD resources and other admin routes
     CRUD::resource('monster', 'MonsterCrudController');
-    CRUD::resource('applications', 'ApplicationCrudController');
+    CRUD::resource('application', 'ApplicationCrudController');
+    CRUD::resource('program', 'ProgramCrudController');
 });
 
 Route::get('api/article', 'Api\ArticleController@index');
