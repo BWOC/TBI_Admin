@@ -86,8 +86,7 @@ return [
             'dump_command_path'             => '/Applications/MAMP/Library/bin/', // only the path, so without 'mysqldump' or 'pg_dump'
             'dump_command_timeout'          => 60 * 5, // 5 minute timeout
             'dump_using_single_transaction' => true,
-            'sslmode'                       => env('DB_SSLMODE', 'prefer'),
-            'options'                       => array( PDO::MYSQL_ATTR_SSL_KEY => env('DB_SSL')),            
+            'options'                       => array( PDO::MYSQL_ATTR_SSL_CA => env('DB_SSL')),            
         ],
 
         'pgsql' => [
