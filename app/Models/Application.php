@@ -75,6 +75,10 @@ class Application extends Model
     {
         return $this->hasOne('App\Models\ApplicationMinister','application_id','id');
     }
+    public function registration()
+    {
+        return $this->hasOne('App\Models\ApplicationRegistration','application_id','id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -478,6 +482,7 @@ class Application extends Model
         }
         return 'No';  
     }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
@@ -510,5 +515,12 @@ class Application extends Model
             // 3. Save the path to the database
             $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
         }
+    }
+    public function setCheckedInAttribute()
+    {
+        if ($this->attributes['checked_in']==1) {
+            return 'Yes';
+        }
+        return 'No';
     }
 }

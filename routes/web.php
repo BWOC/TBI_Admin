@@ -32,6 +32,7 @@ Route::group([
     CRUD::resource('monster', 'MonsterCrudController');
     CRUD::resource('application', 'ApplicationCrudController');
     CRUD::resource('program', 'ProgramCrudController');
+    CRUD::resource('registration', 'ApplicationRegistrationCrudController');
 });
 
 Route::get('api/article', 'Api\ArticleController@index');

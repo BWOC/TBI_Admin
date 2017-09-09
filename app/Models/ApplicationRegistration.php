@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Applicant extends Model
+class ApplicationRegistration extends Model
 {
     use CrudTrait;
 
@@ -15,44 +15,52 @@ class Applicant extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tbi_applicants';
+    protected $table = 'tbi_application_registration';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $guarded = ['id','applicant_id'];
-    protected $fillable = ['first_name','last_name','email_address','birthdate'];
+    //protected $guarded = [];
+    protected $fillable = ['application_id','info_confirmed','medical_confirmed','checked_in','registration_notes'];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $casts = [ 'info_confirmed' => 'boolean', 'medical_confirmed' => 'boolean', 'checked_in' => 'boolean' ];
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function getFullNameAttribute() 
+    public function getCheckedInAttribute()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        if ($this->attributes['checked_in']) {
+            return 'Yes';
+        }
+        return 'No';
     }
 
-    public function getApplicantAttribute() 
+    public function getInfoConfirmedAttribute()
     {
-        $applicantId = $this->applicant_id;
-        $applicantMiddleName = $this->application->middle_name;
-        $fullName = $this->first_name . ' ' . $applicantMiddleName . ' ' . $this->last_name;
-        return "$fullName<br>Applicant ID: $applicantId<br><a href=\"mailto:$this->email_address\">$this->email_address</a>";
+        if ($this->attributes['info_confirmed']) {
+            return 'Yes';
+        }
+        return 'No';
+    }
+    public function getMedicalConfirmedAttribute()
+    {
+        if ($this->attributes['medical_confirmed']) {
+            return 'Yes';
+        }
+        return 'No';
     }
 
-    public function showFullName()
-    {
-        return $this->fresh()->fullname; // make sure you call fresh instance or you'll get an error that fullname is not found or something like that...
-    }
-    
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function application() {
-        return $this->hasOne('App\Models\Application','applicant_id','id');
+    
+    public function application()
+    {
+        return $this->belongsTo('App\Models\Application','application_id','id');
     }
     /*
     |--------------------------------------------------------------------------
@@ -71,4 +79,5 @@ class Applicant extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
 }
