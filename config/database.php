@@ -70,6 +70,26 @@ return [
             'dump_using_single_transaction' => true,
         ],
 
+        'mysql_ssl' => [
+            'driver'                        => 'mysql',
+            'host'                          => env('DB_HOST', 'localhost'),
+            'port'                          => env('DB_PORT', '3306'),
+            'database'                      => env('DB_DATABASE', 'forge'),
+            'username'                      => env('DB_USERNAME', 'forge'),
+            'password'                      => env('DB_PASSWORD', ''),
+            'unix_socket'                   => env('DB_SOCKET', null),
+            'charset'                       => 'utf8',
+            'collation'                     => 'utf8_unicode_ci',
+            'prefix'                        => '',
+            'strict'                        => false,
+            'engine'                        => null,
+            'dump_command_path'             => '/Applications/MAMP/Library/bin/', // only the path, so without 'mysqldump' or 'pg_dump'
+            'dump_command_timeout'          => 60 * 5, // 5 minute timeout
+            'dump_using_single_transaction' => true,
+            'sslmode'                       => env('DB_SSLMODE', 'prefer'),
+            'options'                       => array( PDO::MYSQL_ATTR_SSL_KEY => env('DB_SSL')),            
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
