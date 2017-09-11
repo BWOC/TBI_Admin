@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class ApplicationMedicalContact extends Model
+class ApplicationJob extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,12 @@ class ApplicationMedicalContact extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tbi_application_medical_contact';
-    // protected $primaryKey = 'id';
+    protected $table = 'tbi_application_job';
+    //protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['first_name','last_name','address_street','address_city','address_state','address_zip','phone','relationship'];
+    protected $fillable = ['application_id','job_active','job_location','job_contact_name','job_contact_number','job_schedule'];
+    protected $casts = [ 'job_active' => 'boolean' ];    
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -49,10 +50,17 @@ class ApplicationMedicalContact extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    public function getMedicalContactFullNameAttribute()
+    public function getJobActiveSummaryAttribute()
     {
-        if($this->attributes['first_name']) {
-            return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+        if ($this->attributes['job_active']) {
+            return 'Yes';
+        }
+        return 'No';
+    }
+    public function getJobContactNameAttribute()
+    {
+        if ($this->attributes['job_contact_name']) {
+            return $this->attributes['job_contact_name'];
         }
         return false;
     }

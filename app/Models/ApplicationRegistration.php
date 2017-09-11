@@ -29,7 +29,7 @@ class ApplicationRegistration extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function getCheckedInAttribute()
+    public function getCheckedInSummaryAttribute()
     {
         if ($this->attributes['checked_in']) {
             return 'Yes';
@@ -37,14 +37,14 @@ class ApplicationRegistration extends Model
         return 'No';
     }
 
-    public function getInfoConfirmedAttribute()
+    public function getInfoConfirmedSummaryAttribute()
     {
         if ($this->attributes['info_confirmed']) {
             return 'Yes';
         }
         return 'No';
     }
-    public function getMedicalConfirmedAttribute()
+    public function getMedicalConfirmedSummaryAttribute()
     {
         if ($this->attributes['medical_confirmed']) {
             return 'Yes';

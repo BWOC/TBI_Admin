@@ -55,9 +55,17 @@ class Application extends Model
     {
         return $this->hasOne('App\Models\ApplicationFinancial','application_id','id');
     }
+    public function applicationJob()
+    {
+        return $this->hasOne('App\Models\ApplicationJob','application_id','id');
+    }
     public function applicationLiability()
     {
         return $this->hasOne('App\Models\ApplicationLiability','application_id','id');
+    }
+    public function applicationMedicalContact()
+    {
+        return $this->hasOne('App\Models\ApplicationMedicalContact','application_id','id');
     }
     public function applicationParents()
     {
@@ -75,6 +83,11 @@ class Application extends Model
     {
         return $this->hasOne('App\Models\ApplicationMinister','application_id','id');
     }
+    public function applicationVehicle()
+    {
+        return $this->hasOne('App\Models\ApplicationVehicle','application_id','id');
+    }
+
     public function registration()
     {
         return $this->hasOne('App\Models\ApplicationRegistration','application_id','id');
@@ -483,6 +496,170 @@ class Application extends Model
         return 'No';  
     }
 
+    public function getJobActiveAttribute()
+    {
+        if(!empty($this->applicationJob->job_active)) {
+            return $this->applicationJob->job_active;
+        }
+        return false;
+    }
+    public function getJobLocationAttribute()
+    {
+        if(!empty($this->applicationJob->job_location)) {
+            return $this->applicationJob->job_location;
+        }
+        return false;
+    }
+    public function getJobContactNameAttribute()
+    {
+        if(!empty($this->applicationJob->job_contact_name)) {
+            return $this->applicationJob->job_contact_name;
+        }
+        return false;
+    }
+    public function getJobContactNumberAttribute()
+    {
+        if(!empty($this->applicationJob->job_contact_number)) {
+            return $this->applicationJob->job_contact_number;
+        }
+        return false;
+    }
+    public function getJobScheduleAttribute()
+    {
+        if(!empty($this->applicationJob->job_schedule)) {
+            return $this->applicationJob->job_schedule;
+        }
+        return false;
+    }
+    //Medical Contact
+    public function getMedicalContactFullNameAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->first_name)) {
+            return $this->applicationMedicalContact->first_name . ' ' . $this->applicationMedicalContact->last_name;
+        }
+        return false;
+    }
+    public function getMedicalContactFirstNameAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->first_name)) {
+            return $this->applicationMedicalContact->first_name;
+        }
+        return false;
+    }
+    public function getMedicalContactLastNameAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->last_name)) {
+            return $this->applicationMedicalContact->last_name;
+        }
+        return false;
+    }
+    public function getMedicalContactAddressStreetAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->address_street)) {
+            return $this->applicationMedicalContact->address_street;
+        }
+        return false;
+    }
+    public function getMedicalContactAddressCityAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->address_city)) {
+            return $this->applicationMedicalContact->address_city;
+        }
+        return false;
+    }
+    public function getMedicalContactAddressStateAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->address_state)) {
+            return $this->applicationMedicalContact->address_state;
+        }
+        return false;
+    }
+    public function getMedicalContactAddressZipAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->address_zip)) {
+            return $this->applicationMedicalContact->address_zip;
+        }
+        return false;
+    }
+    public function getMedicalContactRelationshipAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->relationship)) {
+            return $this->applicationMedicalContact->relationship;
+        }
+        return false;
+    }
+
+    public function getVehicleMakeAttribute()
+    {
+        if(!empty($this->applicationVehicle->vehicle_make)) {
+            return $this->applicationVehicle->vehicle_make;
+        }
+        return false;
+    }
+    public function getVehicleModelAttribute()
+    {
+        if(!empty($this->applicationVehicle->vehicle_model)) {
+            return $this->applicationVehicle->vehicle_model;
+        }
+        return false;
+    }
+    public function getVehicleColorAttribute()
+    {
+        if(!empty($this->applicationVehicle->vehicle_color)) {
+            return $this->applicationVehicle->vehicle_color;
+        }
+        return false;
+    }
+    public function getVehicleInsuranceAttribute()
+    {
+        if(!empty($this->applicationVehicle->vehicle_insurance)) {
+            return $this->applicationVehicle->vehicle_insurance;
+        }
+        return false;
+    }
+    public function getVehicleLicensePlateAttribute()
+    {
+        if(!empty($this->applicationVehicle->vehicle_license_plate)) {
+            return $this->applicationVehicle->vehicle_license_plate;
+        }
+        return false;
+    }
+    public function getVehicleLicenseIdAttribute()
+    {
+        if(!empty($this->applicationVehicle->vehicle_license_id)) {
+            return $this->applicationVehicle->vehicle_license_id;
+        }
+        return false;
+    }
+    public function getVehicleLicenseStateAttribute()
+    {
+        if(!empty($this->applicationVehicle->vehicle_state)) {
+            return $this->applicationVehicle->vehicle_state;
+        }
+        return false;
+    }
+
+    public function getCheckedInAttribute()
+    {
+        if(!empty($this->registration->checked_in)) {
+            return $this->registration->checked_in;
+        }
+        return false;
+    }
+    public function getInfoConfirmedAttribute()
+    {
+        if(!empty($this->registration->info_confirmed)) {
+            return $this->registration->info_confirmed;
+        }
+        return false;
+    }
+    public function getMedicalConfirmedAttribute()
+    {
+        if(!empty($this->registration->medical_confirmed)) {
+            return $this->registration->medical_confirmed;
+        }
+        return false;
+    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
@@ -515,12 +692,5 @@ class Application extends Model
             // 3. Save the path to the database
             $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
         }
-    }
-    public function setCheckedInAttribute()
-    {
-        if ($this->attributes['checked_in']==1) {
-            return 'Yes';
-        }
-        return 'No';
     }
 }

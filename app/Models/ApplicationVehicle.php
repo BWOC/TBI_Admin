@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class ApplicationMedicalContact extends Model
+class ApplicationVehicle extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class ApplicationMedicalContact extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tbi_application_medical_contact';
-    // protected $primaryKey = 'id';
+    protected $table = 'tbi_application_vehicle';
+    //protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['first_name','last_name','address_street','address_city','address_state','address_zip','phone','relationship'];
+    protected $fillable = ['application_id','vehicle_make','vehicle_model','vehicle_color','vehicle_insurance','vehicle_license_plate','vehicle_license_id','vehicle_state'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -49,13 +49,7 @@ class ApplicationMedicalContact extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    public function getMedicalContactFullNameAttribute()
-    {
-        if($this->attributes['first_name']) {
-            return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
-        }
-        return false;
-    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
