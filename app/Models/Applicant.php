@@ -36,14 +36,8 @@ class Applicant extends Model
     public function getApplicantAttribute() 
     {
         $applicantId = $this->applicant_id;
-        $applicantMiddleName = $this->application->middle_name;
-        $fullName = $this->first_name . ' ' . $applicantMiddleName . ' ' . $this->last_name;
+        $fullName = $this->first_name . ' ' . $this->last_name;
         return "$fullName<br>Applicant ID: $applicantId<br><a href=\"mailto:$this->email_address\">$this->email_address</a>";
-    }
-
-    public function showFullName()
-    {
-        return $this->fresh()->fullname; // make sure you call fresh instance or you'll get an error that fullname is not found or something like that...
     }
     
     /*
