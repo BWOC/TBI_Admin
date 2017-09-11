@@ -5,9 +5,14 @@
 				<img class="reg_profile_photo" src="{{ $entry->applicationGeneral->photo }}" />
 			</div>
 			<div class="col-md-3">
+			@if (isset($entry->registration->checked_in_summary))
 				<strong>Checked In:</strong> {{ $entry->registration->checked_in_summary }}<br>
 				<strong>Medical Confirmed:</strong> {{ $entry->registration->medical_confirmed_summary }}<br>
 				<strong>Information Confirmed:</strong> {{ $entry->registration->info_confirmed_summary }}
+			@else
+				- Review Needed -
+			@endif
+
 			</div>
 			<div class="col-md-4">
 				<h3>General Information</h3>
