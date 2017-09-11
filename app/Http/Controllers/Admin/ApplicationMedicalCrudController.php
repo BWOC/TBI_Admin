@@ -39,6 +39,18 @@ class ApplicationMedicalCrudController extends CrudController
             'attribute' => 'applicant',
             'model' => 'App\Models\Applicant',
         ]);
+        $this->crud->addColumn([
+            'label' => 'Program',
+            'type' => "select",
+            'name' => 'program_id',
+            'entity' => 'program',
+            'attribute' => 'title',
+            'model' => 'App\Models\Program'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'updated_at',
+            'label' => 'Updated'
+        ]);
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');

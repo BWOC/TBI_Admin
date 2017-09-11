@@ -63,9 +63,25 @@ class Application extends Model
     {
         return $this->hasOne('App\Models\ApplicationLiability','application_id','id');
     }
+    public function applicationMedical()
+    {
+        return $this->hasOne('App\Models\ApplicationMedical','application_id','id');
+    }
     public function applicationMedicalContact()
     {
         return $this->hasOne('App\Models\ApplicationMedicalContact','application_id','id');
+    }
+    public function applicationMedicalInsurance()
+    {
+        return $this->hasOne('App\Models\ApplicationMedicalInsurance','application_id','id');
+    }
+    public function applicationMedicalConditions()
+    {
+        return $this->hasOne('App\Models\ApplicationMedicalConditions','application_id','id');
+    }
+    public function applicationImmunization()
+    {
+        return $this->hasOne('App\Models\ApplicationImmunization','application_id','id');
     }
     public function applicationParents()
     {

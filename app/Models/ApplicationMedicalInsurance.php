@@ -34,7 +34,10 @@ class ApplicationMedicalInsurance extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function application()
+    {
+        return $this->belongsTo('App\Models\Application','application_id','id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

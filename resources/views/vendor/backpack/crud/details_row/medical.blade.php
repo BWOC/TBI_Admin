@@ -4,25 +4,12 @@
 			<div class="col-md-2">
 				<img class="reg_profile_photo" src="{{ $entry->applicationGeneral->photo }}" />
 			</div>
-			<div class="col-md-3">
-			@if (isset($entry->registration->checked_in_summary))
-				<strong>Checked In:</strong> {{ $entry->registration->checked_in_summary }}<br>
-				<strong>Medical Confirmed:</strong> {{ $entry->registration->medical_confirmed_summary }}<br>
-				<strong>Information Confirmed:</strong> {{ $entry->registration->info_confirmed_summary }}
-			@else
-				- Review Needed -
-			@endif
-
-			</div>
 			<div class="col-md-4">
-				<h3>General Information</h3>
-				<strong>Phone Number:</strong> {{ $entry->applicationGeneral->phone_number }}<br>
-				<strong>Mailing Address:</strong> {{ $entry->applicationGeneral->address_street_1 }}<br>
-				<strong>Mailing Address 2:</strong> {{ $entry->applicationGeneral->address_street_2 }}<br>
-				<strong>City:</strong> {{ $entry->applicationGeneral->address_city }}<br>
-				<strong>State:</strong> {{ $entry->applicationGeneral->address_state }}<br>
-				<strong>ZIP:</strong> {{ $entry->applicationGeneral->address_zip }}<br>
-				<strong>Country:</strong> {{ $entry->applicationGeneral->address_country }}<br><br>
+				<h3>Personal Information</h3>
+				<strong>Full Name:</strong> {{ $entry->applicant->first_name }} {{ $entry->applicationGeneral->middle_name }} {{ $entry->applicant->last_name }}<br>
+				<strong>DOB:</strong> @php echo date('m\/d\/Y',strtotime($entry->applicant->birthdate)); @endphp<br>
+				<strong>Age:</strong> @php $dateOfBirth = $entry->applicant->birthdate; $today = date("Y-m-d"); $diff = date_diff(date_create($dateOfBirth), date_create($today)); echo $diff->format('%y'); @endphp<br>
+				<strong>Gender:</strong> {{ $entry->applicationGeneral->gender }}<br><br>
 				<h3>Emergency Contact</h3>
 				<strong>Name:</strong> {{ $entry->applicationMedicalContact->medical_contact_full_name }}<br>
 				<strong>Address:</strong> {{ $entry->applicationMedicalContact->address_street }}<br>
@@ -30,32 +17,42 @@
 				<strong>State:</strong> {{ $entry->applicationMedicalContact->address_state }}<br>
 				<strong>ZIP:</strong> {{ $entry->applicationMedicalContact->address_zip }}<br>
 				<strong>Phone:</strong> {{ $entry->applicationMedicalContact->phone }}<br>
-				<strong>Relationship:</strong> {{ $entry->applicationMedicalContact->relationship }}<br>
-				<strong>Medical Record:</strong>
+				<strong>Relationship:</strong> {{ $entry->applicationMedicalContact->relationship }}<br><br>
+				<h3>Insurance Information</h3>
+				<strong>Company:</strong> {{ $entry->applicationMedicalInsurance->company }}<br>
+				<strong>Policy Holder Name:</strong> {{ $entry->applicationMedicalInsurance->holder_name }}<br>
+				<strong>Policy Holder Birthdate:</strong> @php echo date('m\/d\/Y',strtotime($entry->applicationMedicalInsurance->holder_birthdate)); @endphp<br>
+				<strong>Policy or Group #:</strong> {{ $entry->applicationMedicalInsurance->policy_number }}<br>
+				<strong>Insurance Company Phone:</strong> {{ $entry->applicationMedicalInsurance->phone }}<br><br>
 			</div>
-			<div class="col-md-3">
-				<h3>Job Information</h3>
-				@if (isset($entry->applicationJob->job_active))
-					<strong>Employed:</strong> {{ $entry->applicationJob->job_active_summary }}<br>
-					<strong>Supervisor:</strong> {{ $entry->applicationJob->job_contact_name }}<br>
-					<strong>Location:</strong> {{ $entry->applicationJob->job_location }}<br>
-					<strong>Phone:</strong> {{ $entry->applicationJob->job_contact_number }}<br>
-					<strong>Schedule:</strong> {{ $entry->applicationJob->job_schedule }}<br>
-				@else
-					- No Information -
-				@endif
-				<br><br>
-				<h3>Vehicle Registration</h3>
-				@if (isset($entry->applicationJob->job_active))
-					<strong>Make:</strong> {{ $entry->applicationVehicle->vehicle_make }}<br>
-					<strong>Model:</strong> {{ $entry->applicationVehicle->vehicle_model }}<br>
-					<strong>Color:</strong> {{ $entry->applicationVehicle->vehicle_color }}<br>
-					<strong>Insurance:</strong> {{ $entry->applicationVehicle->vehicle_insurance }}<br>
-					<strong>License Plate:</strong> {{ $entry->applicationVehicle->vehicle_license_plate }}<br>
-					<strong>Driver's ID#:</strong> {{ $entry->applicationVehicle->vehicle_license_id }}<br>
-					<strong>State Issued:</strong> {{ $entry->applicationVehicle->vehicle_state }}<br>
-				@else
-					- No Information -
+			<div class="col-md-6">
+				<h3>Medical Information</h3>
+				<strong>Allergies (food, medicine, plant, animal, or insect):</strong> {{ $entry->applicationMedicalConditions->allergies }}<br>
+				<strong>Asthma:</strong> {{ $entry->applicationMedicalConditions->asthma }}<br>
+				<strong>Diabetes:</strong> {{ $entry->applicationMedicalConditions->diabetes }}<br>
+				<strong>Heart disease or defect:</strong> {{ $entry->applicationMedicalConditions->heart }}<br>
+				<strong>Bleeding or clotting disorder:</strong> {{ $entry->applicationMedicalConditions->bleeding }}<br>
+				<strong>Hypertension:</strong> {{ $entry->applicationMedicalConditions->hypertension }}<br>
+				<strong>Back or Joint Pain:</strong> {{ $entry->applicationMedicalConditions->back }}<br>
+				<strong>Stomach or Intestinal infection or other condition:</strong>  {{ $entry->applicationMedicalConditions->stomach }}<br>
+				<strong>Epilepsy or Seizures:</strong> {{ $entry->applicationMedicalConditions->epilepsy }}<br>
+				<strong>Depression:</strong>  {{ $entry->applicationMedicalConditions->depression }}<br>
+				<strong>Suicidal Thoughts:</strong> {{ $entry->applicationMedicalConditions->suicidal }}<br>
+				<strong>HIV Virus (AIDS):</strong> {{ $entry->applicationMedicalConditions->hiv }}<br>
+				<strong>Sexual Transmitted Disease:</strong> {{ $entry->applicationMedicalConditions->sexual }}<br>
+				<strong>Frequent or Current Infections:</strong> {{ $entry->applicationMedicalConditions->infections }}<br> 
+				<strong>Chronic or recurring illness:</strong> {{ $entry->applicationMedicalConditions->cancer }}<br> 
+				<strong>Other:</strong> {{ $entry->applicationMedicalConditions->other }}<br>
+				<strong>Explanations:</strong> {{ $entry->applicationMedicalConditions->explanations }}<br>
+				<hr>
+				<strong>Hospitalization:</strong> {{ $entry->applicationMedical->hospitalization }}<br>
+				<strong>Explanation:</strong> {{ $entry->applicationMedical->hospitalization_explain }}<br>
+				<strong>Operations:</strong> {{ $entry->applicationMedical->operations }}<br>
+				<strong>Activities:</strong> {{ $entry->applicationMedical->activities }}<br>
+				<strong>Medications:</strong> {{ $entry->applicationMedical->medications }}<br>
+				<strong>Dietary Restrictions:</strong> {{ $entry->applicationMedical->diet }}<br><br>
+				@if (isset($entry->applicationImmunization->immunization_record))
+				<a href="{{ $entry->applicationImmunization->immunization_record }}" target="_blank">Download Immunization Record</a>
 				@endif
 			</div>
 		</div>
