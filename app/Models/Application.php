@@ -546,6 +546,13 @@ class Application extends Model
         }
         return false;
     }
+    public function getMedicalContactPhoneAttribute()
+    {
+        if(!empty($this->applicationMedicalContact->phone)) {
+            return $this->applicationMedicalContact->phone;
+        }
+        return false;
+    }
     public function getMedicalContactLastNameAttribute()
     {
         if(!empty($this->applicationMedicalContact->last_name)) {

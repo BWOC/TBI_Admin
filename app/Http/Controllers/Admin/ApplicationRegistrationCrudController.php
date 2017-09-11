@@ -389,6 +389,12 @@ class ApplicationRegistrationCrudController extends CrudController
             'tab'   => 'Emergency Contact'
         ]);
         $this->crud->addField([
+            'name'  => 'medical_contact_phone',
+            'label' => 'Phone',
+            'type'  => 'text',
+            'tab'   => 'Emergency Contact'
+        ]);
+        $this->crud->addField([
             'name'  => 'medical_contact_address_street',
             'label' => 'Mailing Address',
             'type'  => 'text',
