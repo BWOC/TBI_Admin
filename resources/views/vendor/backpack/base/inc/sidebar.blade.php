@@ -26,6 +26,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/application?archive=false') }}"><i class="fa fa-users"></i> <span>Applications</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/registration') }}"><i class="fa fa-id-card-o"></i> <span>Registration</span></a></li>
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/medical') }}"><i class="fa fa-medkit"></i> <span>Medical</span></a></li>
               </ul>
           </li>
           <li class="treeview">

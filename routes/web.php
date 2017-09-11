@@ -33,6 +33,7 @@ Route::group([
     CRUD::resource('application', 'ApplicationCrudController');
     CRUD::resource('program', 'ProgramCrudController');
     CRUD::resource('registration', 'ApplicationRegistrationCrudController');
+    CRUD::resource('medical', 'ApplicationMedicalCrudController');
 });
 
 Route::get('api/article', 'Api\ArticleController@index');
