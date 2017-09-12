@@ -51,6 +51,10 @@ class Application extends Model
     {
         return $this->hasOne('App\Models\ApplicationBackground','application_id','id');
     }
+    public function applicationDorm()
+    {
+        return $this->hasOne('App\Models\ApplicationDorm','application_id','id');
+    }
     public function applicationFinancial()
     {
         return $this->hasOne('App\Models\ApplicationFinancial','application_id','id');
@@ -682,6 +686,34 @@ class Application extends Model
             return $this->registration->medical_confirmed;
         }
         return false;
+    }
+    public function getDormBuildingAttribute()
+    {
+        if(!empty($this->applicationDorm->dorm_building)) {
+            return $this->applicationDorm->dorm_building;
+        }
+        return 'Not Assigned';
+    }
+    public function getRoomNumberAttribute()
+    {
+        if(!empty($this->applicationDorm->room_number)) {
+            return $this->applicationDorm->room_number;
+        }
+        return 'Not Assigned';
+    }
+    public function getDormNotesAttribute()
+    {
+        if(!empty($this->applicationDorm->dorm_notes)) {
+            return $this->applicationDorm->dorm_notes;
+        }
+        return false;
+    }
+    public function getApplicantSummaryAttribute()
+    {
+        if (!empty($this->applicant->first_name)) {
+            return '<img src="'.$this->applicationGeneral->photo.'" width="150" /><br><strong>'.$this->applicant->first_name . ' ' . $this->applicant->last_name . '</strong><br>' . $this->applicationGeneral->address_city . ', ' . $this->applicationGeneral->address_state . ', ' . $this->applicationGeneral->address_country;
+        }
+        return false; 
     }
     /*
     |--------------------------------------------------------------------------

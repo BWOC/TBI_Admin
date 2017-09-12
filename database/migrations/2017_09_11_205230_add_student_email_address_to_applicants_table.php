@@ -13,10 +13,15 @@ class AddStudentEmailAddressToApplicantsTable extends Migration
      */
     public function up()
     {
-        Schema::table('tbi_applicants', function (Blueprint $table) {
-            $table->text('student_email_address')->nullable()->after('email_address');
-            
-        });
+        if (Schema::hasColumn('tbi_applicants','student_email_address')) {
+            //
+        }
+        else {
+            Schema::table('tbi_applicants', function (Blueprint $table) {
+                $table->text('student_email_address')->nullable()->after('email_address');
+                
+            });
+        }
     }
 
     /**
