@@ -18,4 +18,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 
-Route::get('source', 'Api\SourceController@index');
+Route::get('source', 'Api\SourceController@index')->middleware('cors');
