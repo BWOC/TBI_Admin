@@ -17,6 +17,9 @@ class SourceController extends Controller
         },
         'applicationGeneral'=>function($query) {
             $query->addSelect(['application_id','phone_number']);
+        },
+        'applicationDorm'=>function($query) {
+            $query->addSelect(['application_id',\DB::raw('CONCAT(dorm_building,"",room_number) as dorm_assignment')]);
         }])
         ->select(['id','applicant_id'])
         ->get();
