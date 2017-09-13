@@ -24,6 +24,28 @@ class SourceController extends Controller
         ->select(['id','applicant_id'])
         ->get();
 
-        return $results;
+        $results_collection = collect($results)->all();
+        $x=0;
+        foreach($results_collection AS $rc) {
+            $response[$x]['applicant_id'] = $rc->id;
+            $response[$x]['first_name'] = $rc->applicant->first_name;
+            $response[$x]['last_name'] = $rc->applicant->last_name;
+            if (isset($rc->applicant->student_email_address)) {
+                $response[$x]['student_email'] = $rc->applicant->student_email_address;                
+            }
+            else {
+                $response[$x]['student_email'] = 'Not Assigned';
+            }
+            $response[$x]['mobile_number'] = $rc->applicationGeneral['phone_number'];
+            if (isset($rc->applicationDorm)) {
+                $response[$x]['dorm_assignment'] = $rc->applicationDorm['dorm_assignment'];
+            }
+            else {
+                $response[$x]['dorm_assignment'] = 'Not Assigned';
+            }
+            $x++;
+        }
+        return response()->json($response);
+        //return $results_collection;
     }
 }
