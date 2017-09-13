@@ -15,12 +15,16 @@ class SourceController extends Controller
         $results = Application::with(['applicant'=>function($query) {
             $query->addSelect(['id','first_name', 'last_name','student_email_address']);
         },
+        
         'applicationGeneral'=>function($query) {
             $query->addSelect(['application_id','phone_number']);
         },
         'applicationDorm'=>function($query) {
             $query->addSelect(['application_id',\DB::raw('CONCAT(dorm_building,"",room_number) as dorm_assignment')]);
         }])
+        ->whereHas('registration', function($query) {
+            $query->where('checked_in',1);
+        })
         ->select(['id','applicant_id'])
         ->get();
 
