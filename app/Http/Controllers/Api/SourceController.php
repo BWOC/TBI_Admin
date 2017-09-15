@@ -32,15 +32,15 @@ class SourceController extends Controller
         $x=0;
         foreach($results_collection AS $rc) {
             $response[$x]['applicant_id'] = $rc->id;
-            $response[$x]['first_name'] = $rc->applicant->first_name;
-            $response[$x]['last_name'] = $rc->applicant->last_name;
+            $response[$x]['first_name'] = trim($rc->applicant->first_name);
+            $response[$x]['last_name'] = trim($rc->applicant->last_name);
             if (isset($rc->applicant->student_email_address)) {
-                $response[$x]['student_email'] = $rc->applicant->student_email_address;                
+                $response[$x]['student_email'] = trim($rc->applicant->student_email_address);                
             }
             else {
                 $response[$x]['student_email'] = 'Not Assigned';
             }
-            $response[$x]['mobile_number'] = $rc->applicationGeneral['phone_number'];
+            $response[$x]['mobile_number'] = trim($rc->applicationGeneral['phone_number']);
             if (isset($rc->applicationDorm)) {
                 $response[$x]['dorm_assignment'] = $rc->applicationDorm['dorm_assignment'];
             }
