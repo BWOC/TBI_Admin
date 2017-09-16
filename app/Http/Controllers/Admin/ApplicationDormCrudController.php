@@ -71,6 +71,14 @@ class ApplicationDormCrudController extends CrudController
             'name' => 'room_number',
             'label' => 'Room Number'
         ]);
+        $this->crud->addColumn([
+            'label' => 'Program',
+            'type' => "select",
+            'name' => 'program_id',
+            'entity' => 'program',
+            'attribute' => 'title',
+            'model' => 'App\Models\Program'
+        ]);
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
@@ -159,9 +167,9 @@ class ApplicationDormCrudController extends CrudController
         $this->addCustomCrudFilters();
         $this->crud->addClause('where','status','Approved');
         $this->crud->addClause('where','cancelled','0');
-        $this->crud->addClause('whereHas', 'registration', function ($q) {
-            $q->where('tbi_application_registration.checked_in', '1');
-        });
+        /*$this->crud->addClause('whereHas', 'program', function ($q) {
+            $q->where('tbi_programs.registration_open', '1');
+        });*/
         // $this->crud->addClause('active');
         // $this->crud->addClause('type', 'car');
         // $this->crud->addClause('where', 'name', '==', 'car');
@@ -171,7 +179,7 @@ class ApplicationDormCrudController extends CrudController
         // });
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
-        $this->crud->with(['applicant','applicationDorm','registration']); // eager load relationships
+        $this->crud->with(['applicant','applicationDorm','program']); // eager load relationships
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
@@ -206,6 +214,18 @@ class ApplicationDormCrudController extends CrudController
                 $q->where('tbi_application_dorm.room_number', $value);
             });
         });
+        $this->crud->addFilter([
+            'name' => 'program',
+            'type' => 'dropdown',
+            'label'=> 'Program'
+        ], function() {
+            return \App\Models\Program::all()->pluck('title', 'id')->toArray();
+        }, function($value) {
+            return $this->crud->query->whereHas('program', function ($q) use ($value) {
+                $q->where('tbi_programs.id', $value);
+            });
+        });
+
     }
     public function store(StoreRequest $request)
     {
