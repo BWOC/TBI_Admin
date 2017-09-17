@@ -16,9 +16,9 @@ class ApplicantController extends Controller
             $email_clean = trim($email_clean,"\"");
             $email_clean = trim($email_clean);
             $response = Applicant::where('student_email_address', $email_clean)->select(['applicant_id'])
-            ->get();
+            ->first();;
         }
-        return response()->json($response);
+        return response()->json($response->applicant_id);
        /* $results = Application::with(['applicant'=>function($query) {
             $query->addSelect(['id','first_name', 'last_name','student_email_address']);
         },
