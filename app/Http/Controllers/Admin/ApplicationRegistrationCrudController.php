@@ -339,6 +339,12 @@ class ApplicationRegistrationCrudController extends CrudController
             'type'  => 'email',
             'tab'   => 'General Info'
         ]);
+        $this->crud->addField([
+            'name'  => 'student_email_address',
+            'label' => 'Student Email Address',
+            'type'  => 'email',
+            'tab'   => 'General Info'
+        ]);
         $this->crud->addField([   // CustomHTML
             'name' => 'separator',
             'type' => 'custom_html',

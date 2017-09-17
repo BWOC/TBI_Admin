@@ -19,7 +19,7 @@ class Applicant extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $guarded = ['id','applicant_id'];
-    protected $fillable = ['first_name','last_name','email_address','birthdate'];
+    protected $fillable = ['first_name','last_name','email_address','student_email_address','birthdate'];
     // protected $hidden = [];
     // protected $dates = [];
 

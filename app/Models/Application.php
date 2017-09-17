@@ -145,6 +145,13 @@ class Application extends Model
         }
         return false;  
     }
+    public function getStudentEmailAddressAttribute()
+    {
+        if (!empty($this->applicant->student_email_address)) {
+            return $this->applicant->student_email_address;
+        }
+        return false;  
+    }
     public function getBirthdateAttribute()
     {
         if (!empty($this->applicant->birthdate)) {

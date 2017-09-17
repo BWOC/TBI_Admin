@@ -19,3 +19,4 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('source', 'Api\SourceController@index')->middleware('cors');
+Route::get('applicant/id', 'Api\ApplicantController@getApplicantIdFromEmail')->middleware('cors');
