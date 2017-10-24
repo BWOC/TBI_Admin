@@ -31,10 +31,14 @@ Route::group([
     // CRUD resources and other admin routes
     CRUD::resource('monster', 'MonsterCrudController');
     CRUD::resource('application', 'ApplicationCrudController');
+
     CRUD::resource('program', 'ProgramCrudController');
     CRUD::resource('registration', 'ApplicationRegistrationCrudController');
     CRUD::resource('medical', 'ApplicationMedicalCrudController');
     CRUD::resource('dorm', 'ApplicationDormCrudController');
+    CRUD::resource('pass', 'PassCrudController.php');
+    CRUD::resource('absence', 'AbsenceCrudController.php');
+    CRUD::resource('student', 'StudentCrudController.php');
 });
 
 Route::get('api/article', 'Api\ArticleController@index');
