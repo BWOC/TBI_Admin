@@ -35,7 +35,15 @@ class AbsenceCrudController extends CrudController
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
-
+        $this->crud->addField([
+            'name'  => 'student_id',
+            'label' => 'Student Name',
+            'type'  => 'select',
+            'entity' => 'student',
+            'attribute' => 'student_id',
+            'model' => 'App\Models\Student',
+            'tab'   => 'Status',
+        ]);
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
@@ -43,7 +51,16 @@ class AbsenceCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+        $this->crud->addColumn([
+            'label' => 'Student',
+            'type' => "select",
+            'name' => 'student_id',
+            'entity' => 'student',
+            'attribute' => 'student',
+            'model' => 'App\Models\Student'
+        ]);
 
+        
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
         // $this->crud->addButton($stack, $name, $type, $content, $position); // add a button; possible types are: view, model_function

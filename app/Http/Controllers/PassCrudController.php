@@ -27,14 +27,7 @@ class PassCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->addColumn([
-            'label' => "Student Name",
-            'type' => "select",
-            'name' => 'student_id',
-            'entity' => 'student',
-            'attribute' => 'name',
-            'model' => 'App\Models\Student',
-        ]);
+
         $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
@@ -43,6 +36,16 @@ class PassCrudController extends CrudController
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 
+        $this->crud->addField([
+            'name'  => 'student_id',
+            'label' => 'Student Name',
+            'type'  => 'select',
+            'entity' => 'student',
+            'attribute' => 'student_id',
+            'model' => 'App\Models\Student',
+            'tab'   => 'Status',
+        ]);
+
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
@@ -50,6 +53,34 @@ class PassCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+        $this->crud->addColumn([
+            'label' => 'Student',
+            'type' => "select",
+            'name' => 'student_id',
+            'entity' => 'student',
+            'attribute' => 'student',
+            'model' => 'App\Models\Student'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'pass_type',
+            'label' => 'Pass Type'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'event_id',
+            'label' => 'Event'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'start_date',
+            'label' => 'Start Date'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'end_date',
+            'label' => 'End Date'
+        ]);
+
+
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
