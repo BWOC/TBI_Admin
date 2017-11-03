@@ -34,7 +34,10 @@ class Absence extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function student()
+    {
+        return $this->belongsTo('App\Models\Student','student_id','applicant_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

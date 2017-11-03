@@ -16,7 +16,7 @@ class Pass extends Model
     */
 
     protected $table = 'tbi_redeemed_passes';
-    protected $primaryKey = 'id';
+    //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
     // protected $fillable = [];
@@ -28,14 +28,16 @@ class Pass extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function student() {
-        return $this->belongsTo('App\Models\Student', 'student_id', 'applicant_id');
-    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function student()
+    {
+        return $this->belongsTo('App\Models\Student','student_id','applicant_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

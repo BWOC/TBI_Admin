@@ -16,7 +16,7 @@ class Student extends Model
     */
 
     protected $table = 'tbi_applicants';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'applicant_id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
     // protected $fillable = [];
@@ -28,9 +28,12 @@ class Student extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
-
-
+    public function getStudentAttribute()
+    {
+        $applicantId = $this->applicant_id;
+        $fullName = $this->first_name . ' ' . $this->last_name;
+        return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a>";
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
