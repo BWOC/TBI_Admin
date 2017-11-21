@@ -39,6 +39,7 @@ Route::group([
     CRUD::resource('pass', 'PassCrudController');
     CRUD::resource('absence', 'AbsenceCrudController');
     CRUD::resource('student', 'StudentCrudController');
+    CRUD::resource('passtypes', 'Admin\PasstypeCrudController');
 });
 
 Route::get('api/article', 'Api\ArticleController@index');
