@@ -34,6 +34,11 @@ class Student extends Model
         $fullName = $this->first_name . ' ' . $this->last_name;
         return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a>";
     }
+    public function getPasstypeAttribute()
+    {
+        $passType = $this->id;
+        return "$this->pass_type";
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
