@@ -28,7 +28,8 @@ class AbsenceCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
+
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -40,10 +41,20 @@ class AbsenceCrudController extends CrudController
             'label' => 'Student Name',
             'type'  => 'select',
             'entity' => 'student',
-            'attribute' => 'student_id',
+            'attribute' => 'studentName',
             'model' => 'App\Models\Student',
             'tab'   => 'Status',
-        ]);
+        ], 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'date',
+            'label' => 'Date',
+            'type'  => 'date_picker',
+            'date_picker_options' => [
+                'format' => 'mm/dd/yyyy',
+            ]
+        ], 'update/create/both');
+
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
@@ -60,7 +71,12 @@ class AbsenceCrudController extends CrudController
             'model' => 'App\Models\Student'
         ]);
 
-        
+        $this->crud->addColumn([
+            'name' => 'date',
+            'type' => "date",
+            'label' => 'Date'
+        ]);
+
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
         // $this->crud->addButton($stack, $name, $type, $content, $position); // add a button; possible types are: view, model_function
@@ -115,6 +131,12 @@ class AbsenceCrudController extends CrudController
         // $this->crud->groupBy();
         // $this->crud->limit();
     }
+
+    public function addCustomCrudFilters()
+    {
+      $filter->add('student_id', 'Student ID', 'text')->clause('where')->operator('=');
+    }
+
 
     public function store(StoreRequest $request)
     {

@@ -48,6 +48,7 @@ class PasstypeCrudController extends CrudController
             'name' => 'title',
             'label' => 'Pass Type'
         ]);
+        
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;

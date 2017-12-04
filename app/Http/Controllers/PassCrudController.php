@@ -41,10 +41,10 @@ class PassCrudController extends CrudController
             'label' => 'Student Name',
             'type'  => 'select',
             'entity' => 'student',
-            'attribute' => 'student_id',
+            'attribute' => 'studentName',
             'model' => 'App\Models\Student',
             'tab'   => 'Status',
-        ]);
+        ], 'update/create/both');
 
 
         $this->crud->addField([
@@ -52,17 +52,39 @@ class PassCrudController extends CrudController
         	'label' => "Event"
       	]);
         $this->crud->addField([
-        	'name' => 'start_date',
-        	'label' => "Start Date"
-      	]);
+            'name' => 'pass_type',
+            'label' => 'Pass Type',
+            'type' => "select",
+            'entity' => 'passtype',
+            'attribute' => 'passtype',
+            'model' => 'App\Models\Passtype'
+        ], 'update/create/both');
         $this->crud->addField([
-        	'name' => 'end_date',
-        	'label' => "End Date"
+            'name'  => 'start_date',
+            'label' => 'Start Date',
+            'type'  => 'date_picker',
+            'date_picker_options' => [
+                'format' => 'mm/dd/yyyy',
+            ]
+        ], 'update/create/both');
+        $this->crud->addField([
+            'name'  => 'end_date',
+            'label' => 'End Date',
+            'type'  => 'date_picker',
+            'date_picker_options' => [
+                'format' => 'mm/dd/yyyy',
+            ]
+        ], 'update/create/both');
+        $this->crud->addField([
+        	'name' => 'contact',
+        	'label' => "Contact"
       	]);
         $this->crud->addField([
         	'name' => 'remarks',
+          'type'  => 'textarea',
         	'label' => "Remarks"
       	]);
+
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -100,10 +122,12 @@ class PassCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'start_date',
+            'type' => "date",
             'label' => 'Start Date'
         ]);
         $this->crud->addColumn([
             'name' => 'end_date',
+            'type' => "date",
             'label' => 'End Date'
         ]);
         $this->crud->addColumn([
@@ -165,12 +189,28 @@ class PassCrudController extends CrudController
         // $this->crud->addClause('whereHas', 'posts', function($query) {
         //     $query->activePosts();
         // });
+        $this->addCustomCrudFilters();
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(); // eager load relationships
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
+    }
+
+    public function addCustomCrudFilters()
+    {
+
+      $this->crud->addFilter([
+          'name' => 'pass_type',
+          'type' => 'dropdown',
+          'label'=> 'Pass Type'
+      ], function() {
+          return \App\Models\Passtype::all()->pluck('title', 'id')->toArray();
+      }, function($value) {
+          $this->crud->addClause('where', 'pass_type', $value);
+      });
+
     }
 
     public function store(StoreRequest $request)
