@@ -19,7 +19,7 @@ class Pass extends Model
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['pass_type','event_id','student_id','start_date','end_date','remarks','contact'];
     // protected $hidden = [];
     // protected $dates = [];
 

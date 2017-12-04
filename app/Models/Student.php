@@ -32,12 +32,19 @@ class Student extends Model
     {
         $applicantId = $this->applicant_id;
         $fullName = $this->first_name . ' ' . $this->last_name;
-        return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a>";
+        return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a><br><i>$this->applicant_id</i>";
     }
-    public function getPasstypeAttribute()
+    public function getStudentNameAttribute()
     {
-        $passType = $this->id;
-        return "$this->pass_type";
+        $applicantId = $this->applicant_id;
+        $fullName = $this->first_name . ' ' . $this->last_name;
+        return "$fullName";
+    }
+    public function getStudentIDAttribute()
+    {
+        $applicantId = $this->applicant_id;
+        $fullName = $this->first_name . ' ' . $this->last_name;
+        return $this->applicant_id;
     }
     /*
     |--------------------------------------------------------------------------
