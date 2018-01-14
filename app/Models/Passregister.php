@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Pass extends Model
+class Passregister extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Pass extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tbi_redeemed_passes';
-    //protected $primaryKey = 'id';
+    protected $table = 'tbi_passes_summary';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['pass_type','event_id','student_id','start_date','end_date','remarks','contact'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -29,29 +29,35 @@ class Pass extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function getPassRegisterAttribute()
+    {
+        $academicPasses = $this->academic_passes;
+        $eventPasses = $this->event_passes;
+        //$fullName = $this->first_name . ' ' . $this->last_name;
+        return "<b>AP<i>$academicPasses</i> | EP<i>$eventPasses</i></b>";
+    }
 
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
     public function student()
     {
         return $this->belongsTo('App\Models\Student','student_id','applicant_id');
     }
 
-    public function passregister()
+    public function balance()
     {
-        return $this->belongsTo('App\Models\Passregister','student_id','id');
-    }
-
-    public function passtype()
-    {
-        return $this->belongsTo('App\Models\Passtype','pass_type','id');
+      return $this->account_balance;
     }
 
 
-
+    public function program()
+    {
+        return $this->belongsTo('App\Models\Program','program_id','id');
+    }
 
     /*
     |--------------------------------------------------------------------------
