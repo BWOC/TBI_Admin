@@ -46,11 +46,11 @@
               </ul>
           </li>
           <li class="treeview">
-              <a href="#"><i class="fa fa-users"></i> <span>Finances</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-money"></i> <span>Finances</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/balance') }}"><i class="fa fa-usd"></i> <span>Account Balance</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/expense') }}"><i class="fa fa-credit-card"></i> <span>Expenses</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/payment') }}"><i class="fa fa-money"></i> <span>Payments</span></a></li>
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/payment') }}"><i class="fa fa-cc-visa"></i> <span>Payments</span></a></li>
               </ul>
           </li>
 
