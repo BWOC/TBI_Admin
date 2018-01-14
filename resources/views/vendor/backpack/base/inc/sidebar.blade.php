@@ -33,6 +33,7 @@
               <a href="#"><i class="fa fa-university"></i> <span>Student Affairs</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/dorm') }}"><i class="fa fa-bed"></i> <span>Dorms</span></a></li>
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/passregister') }}"><i class="fa fa-calendar"></i> <span>Passes Summary</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/pass') }}"><i class="fa fa-car"></i> <span>Passes</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/absence') }}"><i class="fa fa-times"></i> <span>Absences</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/student') }}"><i class="fa fa-id-badge"></i> <span>Students</span></a></li>
@@ -42,6 +43,14 @@
               <a href="#"><i class="fa fa-users"></i> <span>Academics</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/program') }}"><i class="fa fa-road"></i> <span>Programs</span></a></li>
+              </ul>
+          </li>
+          <li class="treeview">
+              <a href="#"><i class="fa fa-users"></i> <span>Finances</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/balance') }}"><i class="fa fa-usd"></i> <span>Account Balance</span></a></li>
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/expense') }}"><i class="fa fa-credit-card"></i> <span>Expenses</span></a></li>
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/payment') }}"><i class="fa fa-money"></i> <span>Payments</span></a></li>
               </ul>
           </li>
 
