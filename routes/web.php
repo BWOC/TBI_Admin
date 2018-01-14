@@ -39,11 +39,11 @@ Route::group([
     CRUD::resource('pass', 'PassCrudController');
     CRUD::resource('absence', 'AbsenceCrudController');
     CRUD::resource('student', 'StudentCrudController');
-    CRUD::resource('passtype', 'Admin\PasstypeCrudController');
-    CRUD::resource('balance', 'Admin\BalanceCrudController');
-    CRUD::resource('expense', 'Admin\ExpenseCrudController');
-    CRUD::resource('payment', 'Admin\PaymentCrudController');
-    CRUD::resource('passregister', 'Admin\PassregisterCrudController');
+    CRUD::resource('passtype', 'PasstypeCrudController');
+    CRUD::resource('balance', 'BalanceCrudController');
+    CRUD::resource('expense', 'ExpenseCrudController');
+    CRUD::resource('payment', 'PaymentCrudController');
+    CRUD::resource('passregister', 'PassregisterCrudController');
     
 });
 
