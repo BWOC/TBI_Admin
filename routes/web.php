@@ -40,6 +40,11 @@ Route::group([
     CRUD::resource('absence', 'AbsenceCrudController');
     CRUD::resource('student', 'StudentCrudController');
     CRUD::resource('passtype', 'Admin\PasstypeCrudController');
+    CRUD::resource('balance', 'Admin\BalanceCrudController');
+    CRUD::resource('expense', 'Admin\ExpenseCrudController');
+    CRUD::resource('payment', 'Admin\PaymentCrudController');
+    CRUD::resource('passregister', 'Admin\PassregisterCrudController');
+    
 });
 
 Route::get('api/article', 'Api\ArticleController@index');
