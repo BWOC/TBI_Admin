@@ -41,7 +41,7 @@ class AbsenceCrudController extends CrudController
             'label' => 'Student Name',
             'type'  => 'select',
             'entity' => 'student',
-            'attribute' => 'studentName',
+            'attribute' => 'student',
             'model' => 'App\Models\Student',
             'tab'   => 'Status',
         ], 'update/create/both');
@@ -67,7 +67,7 @@ class AbsenceCrudController extends CrudController
             'type' => "select",
             'name' => 'student_id',
             'entity' => 'student',
-            'attribute' => 'student',
+            'attribute' => 'studentPasses',
             'model' => 'App\Models\Student'
         ]);
 

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\PassRequest as StoreRequest;
-use App\Http\Requests\PassRequest as UpdateRequest;
+use App\Http\Requests\BalanceRequest as StoreRequest;
+use App\Http\Requests\BalanceRequest as UpdateRequest;
 
-class PassCrudController extends CrudController
+class BalanceCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class PassCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Pass');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/pass');
-        $this->crud->setEntityNameStrings('pass', 'passes');
+        $this->crud->setModel('App\Models\Balance');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/balance');
+        $this->crud->setEntityNameStrings('balance', 'balances');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ class PassCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        // $this->crud->setFromDb();
+        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -46,45 +46,24 @@ class PassCrudController extends CrudController
             'tab'   => 'Status',
         ], 'update/create/both');
 
+        $this->crud->addField([
+            'name'  => 'program_id',
+            'label' => 'Program',
+            'type'  => 'select',
+            'entity' => 'program',
+            'attribute' => 'program',
+            'model' => 'App\Models\Program',
+            'tab'   => 'Status',
+        ], 'update/create/both');
 
         $this->crud->addField([
-        	'name' => 'event_id',
-        	'label' => "Event"
+        	'name' => 'account_balance',
+          'type'  => 'decimal',
+          'prefix' => "$",
+          'suffix' => ".00",
+          'attributes' => ["step" => "any"],
+        	'label' => "Account Balance"
       	]);
-        $this->crud->addField([
-            'name' => 'pass_type',
-            'label' => 'Pass Type',
-            'type' => "select",
-            'entity' => 'passtype',
-            'attribute' => 'passtype',
-            'model' => 'App\Models\Passtype'
-        ], 'update/create/both');
-        $this->crud->addField([
-            'name'  => 'start_date',
-            'label' => 'Start Date',
-            'type'  => 'date_picker',
-            'date_picker_options' => [
-                'format' => 'mm/dd/yyyy',
-            ]
-        ], 'update/create/both');
-        $this->crud->addField([
-            'name'  => 'end_date',
-            'label' => 'End Date',
-            'type'  => 'date_picker',
-            'date_picker_options' => [
-                'format' => 'mm/dd/yyyy',
-            ]
-        ], 'update/create/both');
-        $this->crud->addField([
-        	'name' => 'contact',
-        	'label' => "Contact"
-      	]);
-        $this->crud->addField([
-        	'name' => 'remarks',
-          'type'  => 'textarea',
-        	'label' => "Remarks"
-      	]);
-
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -95,61 +74,29 @@ class PassCrudController extends CrudController
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
 
 
-
-        $this->crud->addColumn([
-            'name' => 'event_id',
-            'label' => 'Event'
-        ]);
-
-        $this->crud->addColumn([
-            'label' => 'Pass Type',
-            'type' => "select",
-            'name' => 'pass_type',
-            'entity' => 'passtype',
-            'attribute' => 'passtype',
-            'model' => 'App\Models\Passtype'
-        ]);
-
-        // $this->crud->addColumn([
-        //     'label' => 'Passes',
-        //     'type' => "select",
-        //     'name' => 'student_id',
-        //     'entity' => 'passregister',
-        //     'attribute' => 'passregister',
-        //     'model' => 'App\Models\Passregister'
-        // ]);
-
         $this->crud->addColumn([
             'label' => 'Student',
             'type' => "select",
             'name' => 'student_id',
             'entity' => 'student',
-            'attribute' => 'studentPasses',
+            'attribute' => 'student',
             'model' => 'App\Models\Student'
         ]);
 
-
         $this->crud->addColumn([
-            'name' => 'start_date',
-            'type' => "date",
-            'label' => 'Start Date'
-        ]);
-        $this->crud->addColumn([
-            'name' => 'end_date',
-            'type' => "date",
-            'label' => 'End Date'
-        ]);
-        $this->crud->addColumn([
-            'name' => 'remarks',
-            'label' => 'Remarks'
+            'label' => 'Program',
+            'type' => "select",
+            'name' => 'program_id',
+            'entity' => 'program',
+            'attribute' => 'program',
+            'model' => 'App\Models\Program'
         ]);
 
         $this->crud->addColumn([
-            'name' => 'contact',
-            'label' => 'Contact'
+            'name' => 'account_balance',
+            'type' => "decimal",
+            'label' => 'Account Balance ($)'
         ]);
-
-
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
@@ -198,28 +145,12 @@ class PassCrudController extends CrudController
         // $this->crud->addClause('whereHas', 'posts', function($query) {
         //     $query->activePosts();
         // });
-        $this->addCustomCrudFilters();
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(); // eager load relationships
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
-    }
-
-    public function addCustomCrudFilters()
-    {
-
-      $this->crud->addFilter([
-          'name' => 'pass_type',
-          'type' => 'dropdown',
-          'label'=> 'Pass Type'
-      ], function() {
-          return \App\Models\Passtype::all()->pluck('title', 'id')->toArray();
-      }, function($value) {
-          $this->crud->addClause('where', 'pass_type', $value);
-      });
-
     }
 
     public function store(StoreRequest $request)
