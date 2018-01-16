@@ -33,7 +33,7 @@
               <a href="#"><i class="fa fa-university"></i> <span>Student Affairs</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/dorm') }}"><i class="fa fa-bed"></i> <span>Dorms</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/passregister') }}"><i class="fa fa-calendar"></i> <span>Passes Summary</span></a></li>
+                <li><a href="{{ url(config('backpack.base.route_prefix').'/passregister') }}"><i class="fa fa-calendar"></i> <span>Remaining Passes</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/pass') }}"><i class="fa fa-car"></i> <span>Passes</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/absence') }}"><i class="fa fa-times"></i> <span>Absences</span></a></li>
                 <li><a href="{{ url(config('backpack.base.route_prefix').'/student') }}"><i class="fa fa-id-badge"></i> <span>Students</span></a></li>
