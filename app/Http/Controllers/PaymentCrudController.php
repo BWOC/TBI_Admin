@@ -58,7 +58,7 @@ class PaymentCrudController extends CrudController
 
         $this->crud->addField([
         	'name' => 'amount',
-          'type'  => 'decimal',
+          'type'  => 'number',
           'prefix' => "$",
           'suffix' => ".00",
           'attributes' => ["step" => "any"],
@@ -74,12 +74,6 @@ class PaymentCrudController extends CrudController
       	]);
 
         $this->crud->addField([
-        	'name' => 'description',
-          'type'  => 'text',
-        	'label' => "Description"
-      	]);
-
-        $this->crud->addField([
             'name'  => 'paid_date',
             'label' => 'Paid',
             'type'  => 'date_picker',
@@ -87,6 +81,14 @@ class PaymentCrudController extends CrudController
                 'format' => 'mm/dd/yyyy',
             ]
         ], 'update/create/both');
+
+        $this->crud->addField([
+        	'name' => 'description',
+          'type'  => 'textarea',
+        	'label' => "Description"
+      	]);
+
+
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack

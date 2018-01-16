@@ -36,6 +36,40 @@ class PassregisterCrudController extends CrudController
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 
+        $this->crud->addField([
+            'name'  => 'student_id',
+            'label' => 'Student Name',
+            'type'  => 'select',
+            'entity' => 'student',
+            'attribute' => 'studentName',
+            'model' => 'App\Models\Student',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'program_id',
+            'label' => 'Program',
+            'type'  => 'select',
+            'entity' => 'program',
+            'attribute' => 'program',
+            'model' => 'App\Models\Program',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+        $this->crud->addField([
+        	'name' => 'academic_passes',
+          'type'  => 'number',
+        	'label' => "Academic Passes"
+      	]);
+
+        $this->crud->addField([
+        	'name' => 'event_passes',
+          'type'  => 'number',
+        	'label' => "Event Passes"
+      	]);
+
+
+
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
@@ -43,6 +77,8 @@ class PassregisterCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+
 
         $this->crud->addColumn([
             'label' => 'Student',
@@ -53,7 +89,7 @@ class PassregisterCrudController extends CrudController
             'model' => 'App\Models\Student'
         ]);
 
-        
+
 
         $this->crud->addColumn([
             'label' => 'Program',

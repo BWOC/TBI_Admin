@@ -58,7 +58,7 @@ class ExpenseCrudController extends CrudController
 
         $this->crud->addField([
         	'name' => 'amount',
-          'type'  => 'decimal',
+          'type'  => 'number',
           'prefix' => "$",
           'suffix' => ".00",
           'attributes' => ["step" => "any"],
@@ -73,11 +73,7 @@ class ExpenseCrudController extends CrudController
         	'label' => "Expense Type"
       	]);
 
-        $this->crud->addField([
-        	'name' => 'description',
-          'type'  => 'text',
-        	'label' => "Description"
-      	]);
+
 
         $this->crud->addField([
             'name'  => 'due_date',
@@ -87,6 +83,12 @@ class ExpenseCrudController extends CrudController
                 'format' => 'mm/dd/yyyy',
             ]
         ], 'update/create/both');
+
+        $this->crud->addField([
+        	'name' => 'description',
+          'type'  => 'textarea',
+        	'label' => "Description"
+      	]);
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack

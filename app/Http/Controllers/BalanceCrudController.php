@@ -28,7 +28,7 @@ class BalanceCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -58,7 +58,7 @@ class BalanceCrudController extends CrudController
 
         $this->crud->addField([
         	'name' => 'account_balance',
-          'type'  => 'decimal',
+          'type'  => 'number',
           'prefix' => "$",
           'suffix' => ".00",
           'attributes' => ["step" => "any"],
