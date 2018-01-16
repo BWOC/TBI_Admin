@@ -16,10 +16,10 @@ class Balance extends Model
     */
 
     protected $table = 'tbi_applicants_account_balance';
-    //protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['student_id','program_id', 'account_balance'];
     // protected $hidden = [];
     // protected $dates = [];
 

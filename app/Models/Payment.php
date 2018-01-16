@@ -16,7 +16,7 @@ class Payment extends Model
     */
 
     protected $table = 'tbi_applicants_payments';
-    //protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = ['student_id','program_id','paid_date', 'payment_type','description', 'amount'];

@@ -16,7 +16,7 @@ class Expense extends Model
     */
 
     protected $table = 'tbi_applicants_expenses';
-    //protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = ['student_id','program_id','due_date', 'expense_type','description', 'amount'];

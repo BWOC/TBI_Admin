@@ -19,7 +19,7 @@ class Passregister extends Model
     protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['student_id', 'academic_passes', 'event_passes', 'program_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
