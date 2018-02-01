@@ -215,6 +215,28 @@ class ExpenseCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $currentExpense = $request->amount;
+        $studentID = $request->student_id;
+
+        echo "This is the current expense : $currentExpense <br>";
+
+        // $paymentbalance = $request->balance;
+        // $paymentbalance = \DB::table('tbi_applicants_account_balance')->where('id',$studentID)->get();
+        $paymentbalance = \App\Models\Balance::find($studentID);
+        echo "This is the current Balance : $paymentbalance->account_balance";
+
+        // Fetch the Old Balance
+        $paymentbalancefigure = $paymentbalance->account_balance;
+
+        // Calculate the new balance
+        $paymentbalancefigure = $paymentbalancefigure - $currentExpense;
+
+        // Place the new balance in the row
+        $paymentbalance->account_balance = $paymentbalancefigure;
+
+        //Save the Row in the Balance Table
+        $paymentbalance->save();
+
         return $redirect_location;
     }
 

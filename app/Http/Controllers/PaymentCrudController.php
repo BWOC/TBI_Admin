@@ -70,7 +70,7 @@ class PaymentCrudController extends CrudController
         $this->crud->addField([
         	'name' => 'payment_type',
           'type'  => 'text',
-        	'label' => "Expense Type"
+        	'label' => "Payment Type"
       	]);
 
         $this->crud->addField([
@@ -218,6 +218,56 @@ class PaymentCrudController extends CrudController
     {
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
+
+        // DB::table('users')
+        //     ->where('id', 1)
+        //     ->update(['votes' => 1]);
+
+        // $user = App\User::find(1);
+
+        // //Pull the new payment
+        // $currentPayment = $this->amount;
+        //
+        // //Pull the pre-existing student balance
+        // $studentBalance = $this->balance;
+        // $studentBalanceFigure = $studentBalance->account_balance;
+        //
+        // //Calculate new balance
+        // $studentBalanceFigure = $studentBalanceFigure + $currentPayment;
+        //
+        // //Update the Student's Balance with the newly calulated balances
+        // $studentBalance->account_balance = $studentBalanceFigure;
+        //
+        // //Push the updated balance to the student balance table
+        // // $studentBalance->balances()->update($studentBalance);
+        // $studentBalance->update($studentBalance);
+
+        // $paymentbalance = $this->balance;
+
+        $currentPayment = $request->amount;
+        $studentID = $request->student_id;
+
+
+
+        // $paymentbalance = $request->balance;
+        // $paymentbalance = \DB::table('tbi_applicants_account_balance')->where('id',$studentID)->get();
+        $paymentbalance = \App\Models\Balance::find($studentID);
+
+
+        // Fetch the Old Balance
+        $paymentbalancefigure = $paymentbalance->account_balance;
+
+        // Calculate the new balance
+        $paymentbalancefigure = $currentPayment + $paymentbalancefigure;
+
+        // Place the new balance in the row
+        $paymentbalance->account_balance = $paymentbalancefigure;
+
+        //Save the Row in the Balance Table
+        $paymentbalance->save();
+
+        // echo $paymentstudent->first_name;
+
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
@@ -227,6 +277,7 @@ class PaymentCrudController extends CrudController
     {
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
+
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;

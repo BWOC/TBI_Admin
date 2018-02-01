@@ -228,6 +228,51 @@ class PassCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+
+        //Get Student Pass Details
+        $passType = $request->pass_type;
+        $studentID = $request->student_id;
+
+        $passRegister = \App\Models\Passregister::find($studentID);
+
+
+        // Fetch the Stats
+        $numberOfAcademicPasses = $passRegister->academic_passes;
+        $numberOfEventPasses = $passRegister->event_passes;
+        $numberOfFunPasses = $passRegister->fun_passes;
+        $numberOfCustomPasses = $passRegister->custom_passes;
+
+        // Calculate the new stats
+
+        if ($passType == 1) {
+          # code...
+          $numberOfAcademicPasses = $numberOfAcademicPasses + 1;
+
+        }
+        if ($passType == 2) {
+          # code...
+          $numberOfEventPasses = $numberOfEventPasses + 1;
+
+        }
+        if ($passType == 3) {
+          # code...
+          $numberOfFunPasses = $numberOfFunPasses + 1;
+
+        }
+        if ($passType == 4) {
+          # code...
+          $numberOfCustomPasses = $numberOfCustomPasses + 1;
+
+        }
+
+        // Place the new Stats in the row
+        $passRegister->academic_passes = $numberOfAcademicPasses;
+        $passRegister->event_passes = $numberOfEventPasses;
+        $passRegister->fun_passes = $numberOfFunPasses;
+        $passRegister->custom_passes = $numberOfCustomPasses;
+
+        //Save the Row in the Pass Register Table
+        $passRegister->save();
         return $redirect_location;
     }
 
