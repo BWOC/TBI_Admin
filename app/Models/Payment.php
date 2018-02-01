@@ -28,6 +28,33 @@ class Payment extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    // 
+    // /**
+    //  * Stores the user id at each create & update.
+    //  */
+    // public function save(array $options = [])
+    // {
+    //
+    //
+    //     $currentPayment = $this->amount;
+    //
+    //     //Pull the pre-existing student balance
+    //     $studentBalance = $this->balance;
+    //     $studentBalanceFigure = $studentBalance->account_balance;
+    //
+    //     //Calculate new balance
+    //     $studentBalanceFigure = $studentBalanceFigure + $currentPayment;
+    //
+    //     //Update the Student's Balance with the newly calulated balances
+    //     $studentBalance->account_balance = $studentBalanceFigure;
+    //
+    //     //Push the updated balance to the student balance table
+    //     // $studentBalance->balances()->update($studentBalance);
+    //     // $studentBalance->update($studentBalance);
+    //     $this->balance = $studentBalance;
+    //
+    //     parent::save();
+    // }
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +66,8 @@ class Payment extends Model
     {
         return $this->belongsTo('App\Models\Student','student_id','applicant_id');
     }
+
+    // protected $touches = ['balance'];
 
     public function balance()
     {

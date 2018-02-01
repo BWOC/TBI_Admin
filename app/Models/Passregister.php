@@ -45,14 +45,18 @@ class Passregister extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Models\Student','student_id','applicant_id');
+      return $this->belongsTo('App\Models\Student','student_id', 'applicant_id');
     }
 
     public function balance()
     {
-      return $this->account_balance;
+      return $this->belongsTo('App\Models\Balance','student_id', 'student_id');
     }
 
+    public function pass()
+    {
+        return $this->hasMany('App\Models\Payment','student_id', 'student_id');
+    }
 
     public function program()
     {

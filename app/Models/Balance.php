@@ -29,6 +29,8 @@ class Balance extends Model
     |--------------------------------------------------------------------------
     */
 
+
+
     public function getBalanceAttribute()
     {
         $balance = $this->account_balance;
@@ -44,16 +46,20 @@ class Balance extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Models\Student','student_id','applicant_id');
+      return $this->belongsTo('App\Models\Student','student_id', 'applicant_id');
     }
-    public function balance()
+
+    public function payments()
     {
-      return $this->account_balance;
+        return $this->hasMany('App\Models\Payment');
     }
-    public function studentBalance()
+
+    public function passregister()
     {
-        return $this->belongsTo('App\Models\Student','student_id','applicant_id');
+      return $this->belongsTo('App\Models\Passregister','student_id', 'id');
     }
+
+
 
     public function program()
     {
