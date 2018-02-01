@@ -28,7 +28,10 @@ class Program extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
+    public function getProgramAttribute()
+    {
+        return $this->title;
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
