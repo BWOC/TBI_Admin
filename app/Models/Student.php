@@ -47,7 +47,7 @@ class Student extends Model
     {
         $applicantId = $this->applicant_id;
         $fullName = $this->first_name . ' ' . $this->last_name;
-        return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a><br><i>Student ID : $applicantId</i>";
+        return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br><i>Student ID : $applicantId</i>";
     }
 
     public function getStudentNameAttribute()
@@ -83,7 +83,7 @@ class Student extends Model
         // $remainingAcademicPasses = Passregister::find($applicantId)->academic_passes;
         // $remainingEventPasses = Passregister::find($applicantId)->event_passes;
 
-        return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a><br><i>$this->applicant_id</i>  <br> Balance : <b>$$balancefigure</b>";
+        return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br><i>$this->applicant_id</i>  <br> Balance : <b>$$balancefigure</b>";
     }
 
     public function getStudentPassesAttribute()
@@ -100,8 +100,8 @@ class Student extends Model
         $funPasses = $passRegisters->fun_passes;
         $customPasses = $passRegisters->custom_passes;
 
-        //return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a><br>AP<i>$academicPasses</i> | EP<i>$eventPasses</i>";
-        return "<b>$fullName</b><br><a href=\"mailto:$this->email_address\">$this->email_address</a><br>A : <b>$academicPasses</b> | E :<b>$eventPasses</b> | F : <b>$funPasses</b> | C : <b>$customPasses</b>";
+        //return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br>AP<i>$academicPasses</i> | EP<i>$eventPasses</i>";
+        return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br>A : <b>$academicPasses</b> | E :<b>$eventPasses</b> | F : <b>$funPasses</b> | C : <b>$customPasses</b>";
     }
 
     /*
