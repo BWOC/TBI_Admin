@@ -33,15 +33,31 @@ class Student extends Model
     {
       return $this->hasOne('App\Models\Balance','student_id', 'applicant_id');
     }
-    public function payments()
+    public function payment()
     {
         return $this->hasMany('App\Models\Payment');
+    }
+
+    public function expense()
+    {
+        return $this->hasMany('App\Models\Expense');
+    }
+    public function absence()
+    {
+        return $this->hasMany('App\Models\Absence');
+    }
+
+    public function pass()
+    {
+        return $this->hasMany('App\Models\Pass','student_id', 'applicant_id');
     }
 
     public function passregister()
     {
       return $this->hasOne('App\Models\Passregister','id', 'applicant_id');
     }
+
+
 
     public function getStudentAttribute()
     {
@@ -53,6 +69,7 @@ class Student extends Model
     public function getStudentNameAttribute()
     {
         $applicantId = $this->applicant_id;
+
         $fullName = $this->first_name . ' ' . $this->last_name;
         return "$fullName";
     }
@@ -89,19 +106,29 @@ class Student extends Model
     public function getStudentPassesAttribute()
     {
         $applicantId = $this->applicant_id;
+
+        $applicantPasses = $this->pass->count();
+        $applicantAbsences = $this->absence->count();
+
+
+        $academicPasses = $this->pass->where('pass_type',1)->count();
+        $eventPasses = $this->pass->where('pass_type',2)->count();
+        $funPasses = $this->pass->where('pass_type',3)->count();
+        $customPasses = $this->pass->where('pass_type',4)->count();
+
         $fullName = $this->first_name . ' ' . $this->last_name;
 
         // $academicPasses = Passregister::find($this->applicant_id)->academic_passes;
         // $eventPasses = Passregister::find($this->applicant_id)->event_passes;
         $passRegisters = $this->passregister;
 
-        $academicPasses = $passRegisters->academic_passes;
-        $eventPasses = $passRegisters->event_passes;
-        $funPasses = $passRegisters->fun_passes;
-        $customPasses = $passRegisters->custom_passes;
+        // $academicPasses = $passRegisters->academic_passes;
+        // $eventPasses = $passRegisters->event_passes;
+        // $funPasses = $passRegisters->fun_passes;
+        // $customPasses = $passRegisters->custom_passes;
 
         //return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br>AP<i>$academicPasses</i> | EP<i>$eventPasses</i>";
-        return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br>A : <b>$academicPasses</b> | E :<b>$eventPasses</b> | F : <b>$funPasses</b> | C : <b>$customPasses</b>";
+        return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br>Passes :<b> $applicantPasses </b> | Absences : <b>$applicantAbsences</b><br>A : <b>$academicPasses</b> | E :<b>$eventPasses</b> | F : <b>$funPasses</b> | C : <b>$customPasses</b>";
     }
 
     /*
