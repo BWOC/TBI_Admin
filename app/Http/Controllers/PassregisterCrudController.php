@@ -28,7 +28,7 @@ class PassregisterCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
