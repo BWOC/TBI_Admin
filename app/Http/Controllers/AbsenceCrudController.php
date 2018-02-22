@@ -41,7 +41,7 @@ class AbsenceCrudController extends CrudController
             'label' => 'Student Name',
             'type'  => 'select',
             'entity' => 'student',
-            'attribute' => 'student',
+            'attribute' => 'studentName',
             'model' => 'App\Models\Student',
             'tab'   => 'Status',
         ], 'update/create/both');
@@ -144,6 +144,27 @@ class AbsenceCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $currentStudentID = $request->student_id;
+
+
+
+        // $paymentbalance = $request->balance;
+        // $paymentbalance = \DB::table('tbi_applicants_account_balance')->where('id',$studentID)->get();
+        $currentStudent = \App\Models\Passregister::find($currentStudentID);
+
+
+        // Fetch the Student Event Pass Register
+        $numberOfStudentEventPasses = $currentStudent->event_passes;
+
+        // Increment the student Event Passes Counter
+        $numberOfStudentEventPasses = $numberOfStudentEventPasses + 1;
+
+        // Place the new number of event passes in the row
+        $currentStudent->event_passes = $numberOfStudentEventPasses;
+
+        //Save the Row in the Passes Register Table
+        $currentStudent->save();
+
         return $redirect_location;
     }
 
