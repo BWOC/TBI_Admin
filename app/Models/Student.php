@@ -108,6 +108,32 @@ class Student extends Model
         $applicantId = $this->applicant_id;
 
         $applicantPasses = $this->pass->count();
+
+
+        $academicPasses = $this->pass->where('pass_type',1)->count();
+        $eventPasses = $this->pass->where('pass_type',2)->count();
+        $funPasses = $this->pass->where('pass_type',3)->count();
+        $customPasses = $this->pass->where('pass_type',4)->count();
+
+        $fullName = $this->first_name . ' ' . $this->last_name;
+
+        // $academicPasses = Passregister::find($this->applicant_id)->academic_passes;
+        // $eventPasses = Passregister::find($this->applicant_id)->event_passes;
+        $passRegisters = $this->passregister;
+
+        // $academicPasses = $passRegisters->academic_passes;
+        // $eventPasses = $passRegisters->event_passes;
+        // $funPasses = $passRegisters->fun_passes;
+        // $customPasses = $passRegisters->custom_passes;
+
+        //return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br>AP<i>$academicPasses</i> | EP<i>$eventPasses</i>";
+        return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br>Passes :<b> $applicantPasses </b> <br>A:<b>$academicPasses</b> | E:<b>$eventPasses</b> | F:<b>$funPasses</b> | C:<b>$customPasses</b>";
+    }
+    public function getStudentLifeAttribute()
+    {
+        $applicantId = $this->applicant_id;
+
+        $applicantPasses = $this->pass->count();
         $applicantAbsences = $this->absence->count();
 
 
