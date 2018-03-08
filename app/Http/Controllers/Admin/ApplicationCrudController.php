@@ -356,6 +356,7 @@ class ApplicationCrudController extends CrudController
             'Pending' => 'Pending',
             'Under Review' => 'Under Review',
             'Not Coming' => 'Not Coming'],
+            'Declined' => 'Declined',
             'allows_null' => true,
             'tab'   => 'Status',
         ]);
@@ -902,6 +903,7 @@ class ApplicationCrudController extends CrudController
             'Pending' => 'Pending',
             'Under Review' => 'Under Review',
             'Not Coming' => 'Not Coming',
+            'Declined' => 'Declined',
         ], function($value) {
             $this->crud->addClause('where', 'status', $value);
         });
