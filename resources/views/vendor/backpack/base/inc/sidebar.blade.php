@@ -240,7 +240,7 @@
 
         </div>
 </app-sidebar-cmp>
-        <div class="sidebar-background" style="background-image: url(../assets/img/sidebar.jpg)"></div>
+        <div class="sidebar-background" style="background-image: url(../img/sidebar.jpg)"></div>
     </div>
 
 @endif
