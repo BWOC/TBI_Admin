@@ -1,99 +1,246 @@
 @if (Auth::check())
     <!-- Left side column. contains the sidebar -->
-    <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="{{ 'https://placehold.it/160x160/00a65a/ffffff/&text='.Auth::user()->display_name[0] }}" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>{{ Auth::user()->display_name }}</p>
-            <a href="{{ url(config('backpack.base.route_prefix').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span></a>
-          </div>
+
+
+
+    <div class="sidebar" data-active-color="white" data-background-color="red" data-image="../assets/img/sidebar.jpg">
+        <app-sidebar-cmp>
+
+        <div class="logo">
+            <div class="logo-normal">
+                <a class="simple-text" href="https://admin.texasbibleinstitute.org/admin">
+                    ADMIN
+                </a>
+            </div>
+
+            <div class="logo-img">
+                <img src="/assets/img/tbilogo.png">
+            </div>
         </div>
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu">
-          {{-- <li class="header">{{ trans('backpack::base.administration') }}</li> --}}
-          <!-- ================================================ -->
-          <!-- ==== Recommended place for admin menu items ==== -->
-          <!-- ================================================ -->
-          <li><a href="{{ url(config('backpack.base.route_prefix').'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
-
-          <li class="treeview">
-              <a href="#"><i class="fa fa-graduation-cap"></i> <span>Admissions</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/application?archive=false') }}"><i class="fa fa-users"></i> <span>Applications</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/registration') }}"><i class="fa fa-id-card-o"></i> <span>Registration</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/medical') }}"><i class="fa fa-medkit"></i> <span>Medical</span></a></li>
-              </ul>
-          </li>
-          <li class="treeview">
-              <a href="#"><i class="fa fa-university"></i> <span>Student Affairs</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/dorm') }}"><i class="fa fa-bed"></i> <span>Dorms</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/pass') }}"><i class="fa fa-car"></i> <span>Passes</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/absence') }}"><i class="fa fa-times"></i> <span>Absences</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/student') }}"><i class="fa fa-id-badge"></i> <span>Students</span></a></li>
-              </ul>
-          </li>
-          <li class="treeview">
-              <a href="#"><i class="fa fa-users"></i> <span>Academics</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/program') }}"><i class="fa fa-road"></i> <span>Programs</span></a></li>
-              </ul>
-          </li>
-          <li class="treeview">
-              <a href="#"><i class="fa fa-money"></i> <span>Finances</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/balance') }}"><i class="fa fa-usd"></i> <span>Account Balance</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/expense') }}"><i class="fa fa-credit-card"></i> <span>Expenses</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/payment') }}"><i class="fa fa-cc-visa"></i> <span>Payments</span></a></li>
-              </ul>
-          </li>
-
-          <!--li><a href="{{ url(config('backpack.base.route_prefix').'/monster') }}"><i class="fa fa-optin-monster"></i> <span>Monsters</span></a></li-->
-
-          <!--li class="treeview">
-              <a href="#"><i class="fa fa-newspaper-o"></i> <span>News</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/article') }}"><i class="fa fa-newspaper-o"></i> <span>Articles</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/category') }}"><i class="fa fa-list"></i> <span>Categories</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/tag') }}"><i class="fa fa-tag"></i> <span>Tags</span></a></li>
-              </ul>
-          </li-->
-
-          <!--li><a href="{{ url(config('backpack.base.route_prefix').'/page') }}"><i class="fa fa-file-o"></i> <span>Pages</span></a></li>
-          <li><a href="{{ url(config('backpack.base.route_prefix').'/menu-item') }}"><i class="fa fa-list"></i> <span>Menu</span></a></li-->
-
-          <!-- Users, Roles Permissions
-          <li class="treeview">
-            <a href="#"><i class="fa fa-group"></i> <span>Users, Roles, Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>
-            <ul class="treeview-menu">
-              <li><a href="{{ url(config('backpack.base.route_prefix').'/user') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
-              <li><a href="{{ url(config('backpack.base.route_prefix').'/role') }}"><i class="fa fa-group"></i> <span>Roles</span></a></li>
-              <li><a href="{{ url(config('backpack.base.route_prefix').'/permission') }}"><i class="fa fa-key"></i> <span>Permissions</span></a></li>
-            </ul>
-          </li>
-
-          <li class="treeview">
-              <a href="#"><i class="fa fa-cogs"></i> <span>Advanced</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/backup') }}"><i class="fa fa-hdd-o"></i> <span>Backups</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/log') }}"><i class="fa fa-terminal"></i> <span>Logs</span></a></li>
-                <li><a href="{{ url(config('backpack.base.route_prefix').'/setting') }}"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
-              </ul>
-          </li>
-          -->
 
 
-          <!-- ======================================= -->
-          {{-- <li class="header">{{ trans('backpack::base.user') }}</li>
-          <li><a href="{{ url(config('backpack.base.route_prefix').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span></a></li> --}}
-        </ul>
-      </section>
-      <!-- /.sidebar -->
-    </aside>
+        <div class="sidebar-wrapper">
+
+            <div class="user">
+                <div class="photo">
+                    <img src="https://placehold.it/160x160/00a65a/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" alt="User Image">
+                </div>
+                <div class="info">
+                    <a class="collapsed" data-toggle="collapse" href="#usermenu">
+                        <span>
+                            {{ Auth::user()->name }} | {{ Auth::user()->roles }}
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <div class="collapse" id="usermenu">
+                      <ul class="nav">
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}">
+                                <!-- <li routerlinkactive="active"><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><b class="fa fa-sign-out"></b> <span>{{ trans('backpack::base.logout') }}</span></a></li> -->
+                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-normal"> Logout </span>
+                              </a>
+                          </li>
+
+                      </ul>
+                  </div>
+
+                </div>
+            </div>
+            <!---->
+            <div class="nav-container">
+                <ul class="nav">
+
+                  <li routerlinkactive="active" class="active"><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="material-icons">dashboard</i> <p>{{ trans('backpack::base.dashboard') }}</p></a></li>
+                  <!-- li.active / TBI Dashboard -->
+
+                  <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#tbiapplications">
+                        <i class="material-icons">school</i>
+                        <p> TBI Applications
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <!-- nav.nav-link / TBI Applications -->
+
+                    <div class="collapse" id="tbiapplications">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/application') }}">
+                                  <span class="sidebar-mini"> AF </span>
+                                  <span class="sidebar-normal"> Applications Forms </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/registration') }}">
+                                  <span class="sidebar-mini"> RS </span>
+                                  <span class="sidebar-normal"> Registration Status </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .collapse / TBI Applications Dropdown Menu -->
+                  </li>
+                  <!-- li.active / TBI Applications -->
+
+                  <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#tbiadmin">
+                        <i class="material-icons">supervisor_account</i>
+                        <p> TBI Admin
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <!-- nav.nav-link / TBI Admin -->
+
+                    <div class="collapse" id="tbiadmin">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/student') }}">
+                                  <span class="sidebar-mini"> TS </span>
+                                  <span class="sidebar-normal"> TBI Students </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/program') }}">
+                                  <span class="sidebar-mini"> TP </span>
+                                  <span class="sidebar-normal"> TBI Programs </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/studentapplicant') }}">
+                                  <span class="sidebar-mini"> TA </span>
+                                  <span class="sidebar-normal"> TBI Applicants </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .collapse / TBI Admin Dropdown Menu -->
+                  </li>
+                  <!-- li.active / TBI Admin -->
+
+
+
+
+
+                  <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#financial">
+                        <i class="material-icons">attach_money</i>
+                        <p> Financial
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+
+                    <div class="collapse" id="financial">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/balance') }}">
+                                  <span class="sidebar-mini"> AB </span>
+                                  <span class="sidebar-normal"> Account Balance </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/expense') }}">
+                                  <span class="sidebar-mini"> E </span>
+                                  <span class="sidebar-normal"> Expenses </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/payment') }}">
+                                  <span class="sidebar-mini"> P </span>
+                                  <span class="sidebar-normal"> Payments </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .collapse / Financial Dropdown Menu -->
+                  </li>
+                  <!-- li.active / Financial -->
+
+
+                  <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#settings">
+                        <i class="material-icons">weekend</i>
+                        <p> Student Life
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+
+                    <div class="collapse" id="settings">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/passregister') }}">
+                                  <span class="sidebar-mini"> AP </span>
+                                  <span class="sidebar-normal"> Available Passes </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/pass') }}">
+                                  <span class="sidebar-mini"> SP </span>
+                                  <span class="sidebar-normal"> Student Passes </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/absence') }}">
+                                  <span class="sidebar-mini"> SA </span>
+                                  <span class="sidebar-normal"> Student Absences </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .collapse / Student Life Dropdown Menu -->
+                  </li>
+                  <!-- li.active / Student Life -->
+
+
+                  <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#studentlife">
+                        <i class="material-icons">settings</i>
+                        <p> Settings
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+
+                    <div class="collapse" id="studentlife">
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/user') }}">
+                                  <span class="sidebar-mini"> UM </span>
+                                  <span class="sidebar-normal"> User Management </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .collapse / Student Life Dropdown Menu -->
+                  </li>
+                  <!-- li.active / Student Life -->
+
+
+			            <!--Removed Pass Register Page -->
+
+
+			            <!-- ================================================ -->
+			            <!-- ==== Recommended place for admin menu items ==== -->
+			            <!-- ================================================ -->
+
+			            <!-- <li routerlinkactive="active"><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><b class="fa fa-files-o"></b> <span>File manager</span></a></li>
+                  <li routerlinkactive="active"><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/page') }}"><b class="fa fa-files-o"></b> <span>Pages</span></a></li>
+                  <li routerlinkactive="active"><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/setting') }}"><b class="fa fa-files-o"></b> <span>Settings</span></a></li> -->
+
+                  <!-- <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/page') }}"><i class="fa fa-file-o"></i> <span>Pages</span></a></li> -->
+			            <!-- ======================================= -->
+			            <!-- <li class="active">{{ trans('backpack::base.user') }}</li> -->
+
+
+
+
+
+
+                </ul>
+            </div>
+
+        </div>
+</app-sidebar-cmp>
+        <div class="sidebar-background" style="background-image: url(../assets/img/sidebar.jpg)"></div>
+    </div>
+
 @endif
