@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\ExpenseRequest as StoreRequest;
+use App\Http\Requests\ExpenseRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class ExpenseCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\Expense');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/expense');
+        $this->crud->setEntityNameStrings('expense', 'expenses');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,13 +28,67 @@ class ApplicantCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'student_id',
+            'label' => 'Student Name',
+            'type'  => 'select',
+            'entity' => 'student',
+            'attribute' => 'studentName',
+            'model' => 'App\Models\Student',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'program_id',
+            'label' => 'Program',
+            'type'  => 'select',
+            'entity' => 'program',
+            'attribute' => 'program',
+            'model' => 'App\Models\Program',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+        $this->crud->addField([
+        	'name' => 'amount',
+          'type'  => 'number',
+          'prefix' => "$",
+          'suffix' => ".00",
+          'attributes' => ["step" => "any"],
+        	'label' => "Amount"
+      	]);
+
+
+
+        $this->crud->addField([
+        	'name' => 'expense_type',
+          'type'  => 'text',
+        	'label' => "Expense Type"
+      	]);
+
+
+
+        $this->crud->addField([
+            'name'  => 'due_date',
+            'label' => 'Due Date',
+            'type'  => 'date_picker',
+            'date_picker_options' => [
+                'format' => 'mm/dd/yyyy',
+            ]
+        ], 'update/create/both');
+
+        $this->crud->addField([
+        	'name' => 'description',
+          'type'  => 'textarea',
+        	'label' => "Description"
+      	]);
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -43,6 +97,62 @@ class ApplicantCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+        $this->crud->addColumn([
+            'label' => 'Program',
+            'type' => "select",
+            'name' => 'program_id',
+            'entity' => 'program',
+            'attribute' => 'program',
+            'model' => 'App\Models\Program'
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Student',
+            'type' => "select",
+            'name' => 'student_id',
+            'entity' => 'student',
+            'attribute' => 'studentBalance',
+            'model' => 'App\Models\Student'
+        ]);
+
+        // $this->crud->addColumn([
+        //     'label' => 'Balance($)',
+        //     'type' => "select",
+        //     'name' => 'student_id',
+        //     'entity' => 'balance',
+        //     'attribute' => 'balance',
+        //     'model' => 'App\Models\Balance'
+        // ]);
+
+
+
+        $this->crud->addColumn([
+            'name' => 'amount',
+            'type' => "decimal",
+            'label' => 'Amount($)'
+        ]);
+
+
+
+        $this->crud->addColumn([
+            'name' => 'expense_type',
+            'type' => "text",
+            'label' => 'Type'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'type' => "text",
+            'label' => 'Description'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'due_date',
+            'type' => "date",
+            'label' => 'Date'
+        ]);
+
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
@@ -105,6 +215,28 @@ class ApplicantCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $currentExpense = $request->amount;
+        $studentID = $request->student_id;
+
+        echo "This is the current expense : $currentExpense <br>";
+
+        // $paymentbalance = $request->balance;
+        // $paymentbalance = \DB::table('tbi_applicants_account_balance')->where('id',$studentID)->get();
+        $paymentbalance = \App\Models\Balance::find($studentID);
+        echo "This is the current Balance : $paymentbalance->account_balance";
+
+        // Fetch the Old Balance
+        $paymentbalancefigure = $paymentbalance->account_balance;
+
+        // Calculate the new balance
+        $paymentbalancefigure = $paymentbalancefigure - $currentExpense;
+
+        // Place the new balance in the row
+        $paymentbalance->account_balance = $paymentbalancefigure;
+
+        //Save the Row in the Balance Table
+        $paymentbalance->save();
+
         return $redirect_location;
     }
 

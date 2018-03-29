@@ -30,23 +30,6 @@ class ProgramCrudController extends CrudController
 
         $this->crud->setFromDb();
 
-        $this->crud->addColumn([
-            'name' => 'title',
-            'label' => 'Title',
-            'type' => 'text'
-        ]);
-        $this->crud->addColumn([
-            'name' => 'date_start',
-            'label' => 'Start',
-            'type' => 'text'
-        ]);
-        $this->crud->addColumn([
-            'name' => 'registration_open',
-            'label' => 'Registration',
-            'type' => 'boolean',
-            'options' => [0 => 'Closed', 1 => 'Open']
-        ]);
-
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
@@ -60,6 +43,50 @@ class ProgramCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+        $this->crud->addColumn([
+            'name' => 'title',
+            'type' => "text",
+            'label' => 'Program Title'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'price',
+            'type' => "decimal",
+            'label' => 'Price($)'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'graduation_fee',
+            'type' => "decimal",
+            'label' => 'Graduation Fee($)'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'date_start',
+            'type' => "date",
+            'label' => 'Start Date'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'date_end',
+            'type' => "date",
+            'label' => 'End Date'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'payment_schedule',
+            'type' => "text",
+            'label' => 'Payment Schedule'
+        ]);
+
+
+
+        $this->crud->addColumn([
+            'name' => 'registration_open',
+            'type' => "check",
+            'label' => 'Registration Open'
+        ]);
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
@@ -119,7 +146,7 @@ class ProgramCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::storeCrud();
+        $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
@@ -128,7 +155,7 @@ class ProgramCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         // your additional operations before save here
-        $redirect_location = parent::updateCrud();
+        $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;

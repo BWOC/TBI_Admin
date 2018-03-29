@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\ApplicationregistrationRequest as StoreRequest;
+use App\Http\Requests\ApplicationregistrationRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class ApplicationregistrationCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\Applicationregistration');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicationregistration');
+        $this->crud->setEntityNameStrings('applicationregistration', 'applicationregistrations');
 
         /*
         |--------------------------------------------------------------------------
@@ -43,7 +43,34 @@ class ApplicantCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
-
+        $this->crud->addColumn([
+            'label' => 'Prospective Applicant',
+            'type' => "select",
+            'name' => 'application_id',
+            'entity' => 'application',
+            'attribute' => 'applicantApplication',
+            'model' => 'App\Models\Application'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'info_confirmed',
+            'type' => "check",
+            'label' => 'Info'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'medical_confirmed',
+            'type' => "check",
+            'label' => 'Medic'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'checked_in',
+            'type' => "check",
+            'label' => 'Checked In'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'registration_notes',
+            'type' => "text",
+            'label' => 'Notes'
+        ]);
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
         // $this->crud->addButton($stack, $name, $type, $content, $position); // add a button; possible types are: view, model_function

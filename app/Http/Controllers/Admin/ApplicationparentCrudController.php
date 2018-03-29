@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\ApplicationparentRequest as StoreRequest;
+use App\Http\Requests\ApplicationparentRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class ApplicationparentCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\Applicationparent');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicationparent');
+        $this->crud->setEntityNameStrings('applicationparent', 'applicationparents');
 
         /*
         |--------------------------------------------------------------------------

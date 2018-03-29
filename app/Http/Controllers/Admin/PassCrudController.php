@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\PassRequest as StoreRequest;
+use App\Http\Requests\PassRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class PassCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\Pass');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/pass');
+        $this->crud->setEntityNameStrings('pass', 'passes');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,13 +28,63 @@ class ApplicantCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'student_id',
+            'label' => 'Student Name',
+            'type'  => 'select',
+            'entity' => 'student',
+            'attribute' => 'studentName',
+            'model' => 'App\Models\Student',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+
+        $this->crud->addField([
+        	'name' => 'event_id',
+        	'label' => "Event"
+      	]);
+        $this->crud->addField([
+            'name' => 'pass_type',
+            'label' => 'Pass Type',
+            'type' => "select",
+            'entity' => 'passtype',
+            'attribute' => 'passtype',
+            'model' => 'App\Models\Passtype'
+        ], 'update/create/both');
+        $this->crud->addField([
+            'name'  => 'start_date',
+            'label' => 'Start Date',
+            'type'  => 'date_picker',
+            'date_picker_options' => [
+                'format' => 'mm/dd/yyyy',
+            ]
+        ], 'update/create/both');
+        $this->crud->addField([
+            'name'  => 'end_date',
+            'label' => 'End Date',
+            'type'  => 'date_picker',
+            'date_picker_options' => [
+                'format' => 'mm/dd/yyyy',
+            ]
+        ], 'update/create/both');
+        $this->crud->addField([
+        	'name' => 'contact',
+        	'label' => "Contact"
+      	]);
+        $this->crud->addField([
+        	'name' => 'remarks',
+          'type'  => 'textarea',
+        	'label' => "Remarks"
+      	]);
+
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -43,6 +93,63 @@ class ApplicantCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+
+
+        $this->crud->addColumn([
+            'name' => 'event_id',
+            'label' => 'Event'
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Pass Type',
+            'type' => "select",
+            'name' => 'pass_type',
+            'entity' => 'passtype',
+            'attribute' => 'passtype',
+            'model' => 'App\Models\Passtype'
+        ]);
+
+        // $this->crud->addColumn([
+        //     'label' => 'Passes',
+        //     'type' => "select",
+        //     'name' => 'student_id',
+        //     'entity' => 'passregister',
+        //     'attribute' => 'passregister',
+        //     'model' => 'App\Models\Passregister'
+        // ]);
+
+        $this->crud->addColumn([
+            'label' => 'Student',
+            'type' => "select",
+            'name' => 'student_id',
+            'entity' => 'student',
+            'attribute' => 'studentPasses',
+            'model' => 'App\Models\Student'
+        ]);
+
+
+        $this->crud->addColumn([
+            'name' => 'start_date',
+            'type' => "date",
+            'label' => 'Start Date'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'end_date',
+            'type' => "date",
+            'label' => 'End Date'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'remarks',
+            'label' => 'Remarks'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'contact',
+            'label' => 'Contact'
+        ]);
+
+
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
@@ -91,6 +198,7 @@ class ApplicantCrudController extends CrudController
         // $this->crud->addClause('whereHas', 'posts', function($query) {
         //     $query->activePosts();
         // });
+        $this->addCustomCrudFilters();
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(); // eager load relationships
@@ -99,12 +207,72 @@ class ApplicantCrudController extends CrudController
         // $this->crud->limit();
     }
 
+    public function addCustomCrudFilters()
+    {
+
+      $this->crud->addFilter([
+          'name' => 'pass_type',
+          'type' => 'dropdown',
+          'label'=> 'Pass Type'
+      ], function() {
+          return \App\Models\Passtype::all()->pluck('title', 'id')->toArray();
+      }, function($value) {
+          $this->crud->addClause('where', 'pass_type', $value);
+      });
+
+    }
+
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+
+        //Get Student Pass Details
+        $passType = $request->pass_type;
+        $studentID = $request->student_id;
+
+        $passRegister = \App\Models\Passregister::find($studentID);
+
+
+        // Fetch the Stats
+        $numberOfAcademicPasses = $passRegister->academic_passes;
+        $numberOfEventPasses = $passRegister->event_passes;
+        $numberOfFunPasses = $passRegister->fun_passes;
+        $numberOfCustomPasses = $passRegister->custom_passes;
+
+        // Calculate the new stats
+
+        if ($passType == 1) {
+          # code...
+          $numberOfAcademicPasses = $numberOfAcademicPasses + 1;
+
+        }
+        if ($passType == 2) {
+          # code...
+          $numberOfEventPasses = $numberOfEventPasses + 1;
+
+        }
+        if ($passType == 3) {
+          # code...
+          $numberOfFunPasses = $numberOfFunPasses + 1;
+
+        }
+        if ($passType == 4) {
+          # code...
+          $numberOfCustomPasses = $numberOfCustomPasses + 1;
+
+        }
+
+        // Place the new Stats in the row
+        $passRegister->academic_passes = $numberOfAcademicPasses;
+        $passRegister->event_passes = $numberOfEventPasses;
+        $passRegister->fun_passes = $numberOfFunPasses;
+        $passRegister->custom_passes = $numberOfCustomPasses;
+
+        //Save the Row in the Pass Register Table
+        $passRegister->save();
         return $redirect_location;
     }
 

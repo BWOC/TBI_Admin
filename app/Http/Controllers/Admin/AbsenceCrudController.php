@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\AbsenceRequest as StoreRequest;
+use App\Http\Requests\AbsenceRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class AbsenceCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\Absence');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/absence');
+        $this->crud->setEntityNameStrings('absence', 'absences');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,13 +28,32 @@ class ApplicantCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
+
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
+        $this->crud->addField([
+            'name'  => 'student_id',
+            'label' => 'Student Name',
+            'type'  => 'select',
+            'entity' => 'student',
+            'attribute' => 'studentName',
+            'model' => 'App\Models\Student',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'date',
+            'label' => 'Date',
+            'type'  => 'date_picker',
+            'date_picker_options' => [
+                'format' => 'mm/dd/yyyy',
+            ]
+        ], 'update/create/both');
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -43,6 +62,20 @@ class ApplicantCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+        $this->crud->addColumn([
+            'label' => 'Student',
+            'type' => "select",
+            'name' => 'student_id',
+            'entity' => 'student',
+            'attribute' => 'studentPasses',
+            'model' => 'App\Models\Student'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'date',
+            'type' => "date",
+            'label' => 'Date'
+        ]);
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
@@ -99,12 +132,39 @@ class ApplicantCrudController extends CrudController
         // $this->crud->limit();
     }
 
+    public function addCustomCrudFilters()
+    {
+      $filter->add('student_id', 'Student ID', 'text')->clause('where')->operator('=');
+    }
+
+
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $currentStudentID = $request->student_id;
+
+
+
+        // $paymentbalance = $request->balance;
+        // $paymentbalance = \DB::table('tbi_applicants_account_balance')->where('id',$studentID)->get();
+        $currentStudent = \App\Models\Passregister::find($currentStudentID);
+
+
+        // Fetch the Student Event Pass Register
+        $numberOfStudentEventPasses = $currentStudent->event_passes;
+
+        // Increment the student Event Passes Counter
+        $numberOfStudentEventPasses = $numberOfStudentEventPasses + 1;
+
+        // Place the new number of event passes in the row
+        $currentStudent->event_passes = $numberOfStudentEventPasses;
+
+        //Save the Row in the Passes Register Table
+        $currentStudent->save();
+
         return $redirect_location;
     }
 

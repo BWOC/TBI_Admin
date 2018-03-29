@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\StudentRequest as StoreRequest;
+use App\Http\Requests\StudentRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class StudentCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\Student');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
+        $this->crud->setEntityNameStrings('student', 'students');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ class ApplicantCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -43,6 +43,19 @@ class ApplicantCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+        $this->crud->addColumn([
+          'name' => 'applicant_id',
+          'label' => 'Student ID'
+        ]);
+
+        $this->crud->addColumn([
+          'name' => 'first_name',
+          'label' => 'First Name'
+        ]);
+        $this->crud->addColumn([
+          'name' => 'last_name',
+          'label' => 'Last Name'
+        ]);
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
@@ -64,6 +77,9 @@ class ApplicantCrudController extends CrudController
 
         // ------ CRUD DETAILS ROW
         // $this->crud->enableDetailsRow();
+        $this->crud->enableDetailsRow();
+        $this->crud->allowAccess('details_row');
+        $this->crud->setDetailsRowView('vendor.backpack.crud.details_row.student');
         // NOTE: you also need to do allow access to the right users: $this->crud->allowAccess('details_row');
         // NOTE: you also need to do overwrite the showDetailsRow($id) method in your EntityCrudController to show whatever you'd like in the details row OR overwrite the views/backpack/crud/details_row.blade.php
 

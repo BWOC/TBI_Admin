@@ -5,11 +5,20 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\UserRequest as StoreRequest;
+use App\Http\Requests\UserRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class UserCrudController extends CrudController
 {
+    //Arrays and Constants
+    public $roles = array(
+        'Admin',
+        'Source',
+        'Medical',
+        'Financial',
+        'Dean',
+        'Student'
+    );
     public function setup()
     {
 
@@ -18,9 +27,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\User');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/user');
+        $this->crud->setEntityNameStrings('user', 'users');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,13 +37,36 @@ class ApplicantCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
+        $roles_array = array_combine($this->roles,$this->roles);
+
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
+
+        $this->crud->addField([
+        	'name' => 'google_id',
+        	'label' => "Google ID"
+      	]);
+        $this->crud->addField([
+        	'name' => 'name',
+        	'label' => "Name"
+      	]);
+        $this->crud->addField([
+        	'name' => 'email',
+        	'label' => "Email"
+      	]);
+
+        $this->crud->addField([
+            'name' => 'roles',
+            'label' => 'Roles',
+            'type'  => 'select_from_array',
+            'options' => $roles_array,
+            'allows_null' => true
+        ]);
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -43,6 +75,26 @@ class ApplicantCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+        $this->crud->addColumn([
+            'name' => 'google_id',
+            'type' => "text",
+            'label' => 'Google ID'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'name',
+            'type' => "text",
+            'label' => 'User'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'email',
+            'type' => "text",
+            'label' => 'Email'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'roles',
+            'type' => "text",
+            'label' => 'Roles'
+        ]);
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;

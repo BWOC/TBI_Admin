@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ApplicantRequest as StoreRequest;
-use App\Http\Requests\ApplicantRequest as UpdateRequest;
+use App\Http\Requests\BalanceRequest as StoreRequest;
+use App\Http\Requests\BalanceRequest as UpdateRequest;
 
-class ApplicantCrudController extends CrudController
+class BalanceCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ApplicantCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Applicant');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicant');
-        $this->crud->setEntityNameStrings('applicant', 'applicants');
+        $this->crud->setModel('App\Models\Balance');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/balance');
+        $this->crud->setEntityNameStrings('balance', 'balances');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,13 +28,42 @@ class ApplicantCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'student_id',
+            'label' => 'Student Name',
+            'type'  => 'select',
+            'entity' => 'student',
+            'attribute' => 'studentName',
+            'model' => 'App\Models\Student',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+        $this->crud->addField([
+            'name'  => 'program_id',
+            'label' => 'Program',
+            'type'  => 'select',
+            'entity' => 'program',
+            'attribute' => 'program',
+            'model' => 'App\Models\Program',
+            'tab'   => 'Status',
+        ], 'update/create/both');
+
+        $this->crud->addField([
+        	'name' => 'account_balance',
+          'type'  => 'number',
+          'prefix' => "$",
+          'suffix' => ".00",
+          'attributes' => ["step" => "any"],
+        	'label' => "Account Balance"
+      	]);
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -43,6 +72,31 @@ class ApplicantCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+
+        $this->crud->addColumn([
+            'label' => 'Student',
+            'type' => "select",
+            'name' => 'student_id',
+            'entity' => 'student',
+            'attribute' => 'student',
+            'model' => 'App\Models\Student'
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Program',
+            'type' => "select",
+            'name' => 'program_id',
+            'entity' => 'program',
+            'attribute' => 'program',
+            'model' => 'App\Models\Program'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'account_balance',
+            'type' => "decimal",
+            'label' => 'Account Balance ($)'
+        ]);
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
