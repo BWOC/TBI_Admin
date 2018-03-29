@@ -17,8 +17,7 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/', function () {
-    //return redirect('admin');
-    return view('welcome');
+    return redirect('admin');
 });
 
 // --------------------
@@ -30,27 +29,12 @@ Route::group([
     'namespace'  => 'Admin',
 ], function () {
     // CRUD resources and other admin routes
-    CRUD::resource('application', 'ApplicationCrudController');
-    CRUD::resource('registration', 'ApplicationregistrationCrudController');
-
-    CRUD::resource('pass', 'PassCrudController');
-    CRUD::resource('passregister', 'PassregisterCrudController');
     CRUD::resource('monster', 'MonsterCrudController');
-    CRUD::resource('student', 'StudentCrudController');
-    CRUD::resource('studentapplicant', 'StudentapplicantCrudController');
-    CRUD::resource('absence', 'AbsenceCrudController');
-
     CRUD::resource('application', 'ApplicationCrudController');
-
-
-    CRUD::resource('balance', 'BalanceCrudController');
-    CRUD::resource('expense', 'ExpenseCrudController');
-    CRUD::resource('payment', 'PaymentCrudController');
-
     CRUD::resource('program', 'ProgramCrudController');
-
-    CRUD::resource('passtype', 'PasstypeCrudController');
-    CRUD::resource('user', 'UserCrudController');
+    CRUD::resource('registration', 'ApplicationRegistrationCrudController');
+    CRUD::resource('medical', 'ApplicationMedicalCrudController');
+    CRUD::resource('dorm', 'ApplicationDormCrudController');
     
 });
 
