@@ -30,27 +30,27 @@ Route::group([
     'namespace'  => 'Admin',
 ], function () {
     // CRUD resources and other admin routes
-    CRUD::resource('application', 'Admin\ApplicationCrudController');
-    CRUD::resource('registration', 'Admin\ApplicationregistrationCrudController');
+    CRUD::resource('application', 'ApplicationCrudController');
+    CRUD::resource('registration', 'ApplicationregistrationCrudController');
 
-    CRUD::resource('pass', 'Admin\PassCrudController');
-    CRUD::resource('passregister', 'Admin\PassregisterCrudController');
+    CRUD::resource('pass', 'PassCrudController');
+    CRUD::resource('passregister', 'PassregisterCrudController');
     CRUD::resource('monster', 'MonsterCrudController');
-    CRUD::resource('student', 'Admin\StudentCrudController');
-    CRUD::resource('studentapplicant', 'Admin\StudentapplicantCrudController');
-    CRUD::resource('absence', 'Admin\AbsenceCrudController');
+    CRUD::resource('student', 'StudentCrudController');
+    CRUD::resource('studentapplicant', 'StudentapplicantCrudController');
+    CRUD::resource('absence', 'AbsenceCrudController');
 
-    CRUD::resource('application', 'Admin\ApplicationCrudController');
+    CRUD::resource('application', 'ApplicationCrudController');
 
 
-    CRUD::resource('balance', 'Admin\BalanceCrudController');
-    CRUD::resource('expense', 'Admin\ExpenseCrudController');
-    CRUD::resource('payment', 'Admin\PaymentCrudController');
+    CRUD::resource('balance', 'BalanceCrudController');
+    CRUD::resource('expense', 'ExpenseCrudController');
+    CRUD::resource('payment', 'PaymentCrudController');
 
-    CRUD::resource('program', 'Admin\ProgramCrudController');
+    CRUD::resource('program', 'ProgramCrudController');
 
-    CRUD::resource('passtype', 'Admin\PasstypeCrudController');
-    CRUD::resource('user', 'Admin\UserCrudController');
+    CRUD::resource('passtype', 'PasstypeCrudController');
+    CRUD::resource('user', 'UserCrudController');
     
 });
 
