@@ -197,7 +197,7 @@
         <div class="copyright pull-right">
           ©
           2018
-          {{ trans('backpack::base.handcrafted_by') }} <a target="_blank" href="{{ config('backpack.base.developer_link') }}">{{ config('backpack.base.developer_name') }}</a>.
+          {{ trans('backpack::base.handcrafted_by') }} <a target="_blank" href="{{ config('backpack.base.developer_link') }}">BMI Digital</a>.
         </div>
     </div>
 
