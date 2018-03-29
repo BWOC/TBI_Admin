@@ -33,7 +33,7 @@
     <!-- <link rel="stylesheet" href="{{ asset('vendor/backpack/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/material-dashboard.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('../css/material-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('../css/material_dashboard/material-dashboard.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('vendor/backpack/demo.css') }}"> -->
 
 
@@ -217,13 +217,13 @@
 <script src="{{ asset('js') }}/plugins/jquery.datatables.js"></script>
 
 
-<script src="{{ asset('js') }}/plugins/pace/pace.min.js"></script>
-<!-- <script src="{{ asset('js') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="{{ asset('js') }}/plugins/slimScroll/jquery-jvectormap.js"></script> -->
-<script src="{{ asset('js') }}/plugins/sweetalert2.min.js"></script>
-<script src="{{ asset('js') }}/plugins/jquery-jvectormap.js"></script>
-<script src="{{ asset('js') }}/plugins/jquery.perfect-scrollbar.min.js"></script>
-<script src="{{ asset('js') }}/plugins/jquery.validate.min.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
+<!-- <script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery-jvectormap.js"></script> -->
+<script src="{{ asset('vendor/adminlte') }}/plugins/sweetalert2.min.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/plugins/jquery-jvectormap.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/core/jquery.perfect-scrollbar.min.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/core/jquery.validate.min.js"></script>
 
 <script src="{{ asset('assets') }}/js/zone.min.js"></script>
 
