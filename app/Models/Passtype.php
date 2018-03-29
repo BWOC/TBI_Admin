@@ -29,11 +29,6 @@ class Passtype extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function pass()
-    {
-        return $this->belongsTo('App\Models\Pass','id','pass_type');
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

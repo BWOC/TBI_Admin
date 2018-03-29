@@ -40,11 +40,6 @@ class Pass extends Model
         return $this->belongsTo('App\Models\Student','student_id','applicant_id');
     }
 
-    // public function relationshipname()
-    // {
-    //     return $this->belongsTo('App\Models\TheirModelName','YourColumnName','TheirColumnName');
-    // }
-
     public function passregister()
     {
         return $this->belongsTo('App\Models\Passregister','student_id','id');
@@ -53,11 +48,6 @@ class Pass extends Model
     public function passtype()
     {
         return $this->belongsTo('App\Models\Passtype','pass_type','id');
-    }
-
-    public function passtypelabel()
-    {
-      return $this->hasOne('App\Models\Passtype','id', 'pass_type');
     }
 
 

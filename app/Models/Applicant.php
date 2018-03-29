@@ -18,7 +18,7 @@ class Applicant extends Model
     protected $table = 'tbi_applicants';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    // protected $guarded = ['id'];
+    protected $guarded = ['id','applicant_id'];
     protected $fillable = ['first_name','last_name','email_address','student_email_address','birthdate'];
     // protected $hidden = [];
     // protected $dates = [];
@@ -28,53 +28,26 @@ class Applicant extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function getFullNameAttribute() 
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
+    public function getApplicantAttribute() 
+    {
+        $applicantId = $this->applicant_id;
+        $fullName = $this->first_name . ' ' . $this->last_name;
+        return "$fullName<br>Applicant ID: $applicantId<br><a href=\"mailto:$this->email_address\">$this->email_address</a>";
+    }
+    
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    public function application()
-    {
-      return $this->hasOne('App\Models\Application','applicant_id', 'id');
+    public function application() {
+        return $this->hasOne('App\Models\Application','applicant_id','id');
     }
-    // function (ReferencedModel.id, PresentModel.id)
-
-    public function getApplicantThumbnailAttribute()
-    {
-      $profilepicture = $this->application->applicationgeneral;
-      if (!empty($profilepicture->photo)) {
-        # code...
-        $profilepicture = $profilepicture->photo;
-        $profilepicture = str_replace("https://texasbibleinstitute.org/", "http://tbinetwork.wpengine.com/", $profilepicture);
-      } else {
-        # code...
-        // $profilepicture = $applicantId;
-        $profilepicture = "https://texasbibleinstitute.org/wp-content/uploads/2017/06/TBI17-WebsiteLOGO.png";
-      }
-    }
-
-    public function getApplicantAttribute()
-    {
-        $applicantId = $this->applicant_id;
-
-
-        $fullName = $this->last_name . ' ' . $this->first_name;
-        // return "<b>$fullName</b><br><a href=\"mailto:$this->student_email_address\">$this->student_email_address</a><br><i>Student ID : $applicantId</i>";
-        return "<b>$fullName</b><br>$applicantId";
-    }
-
-
-
-    public function getApplicantNameAttribute()
-    {
-        $applicantId = $this->id;
-
-        $fullName = $this->first_name . ' ' . $this->last_name;
-        return "$fullName";
-    }
-
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -86,8 +59,6 @@ class Applicant extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
-
 
     /*
     |--------------------------------------------------------------------------

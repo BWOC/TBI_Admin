@@ -39,6 +39,7 @@ class Expense extends Model
     {
         return $this->belongsTo('App\Models\Student','student_id','applicant_id');
     }
+    
 
     public function balance()
     {
