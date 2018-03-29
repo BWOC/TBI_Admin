@@ -14,7 +14,7 @@
             </div>
 
             <div class="logo-img">
-                <img src="/assets/img/tbilogo.png">
+                <img src="/img/tbilogo.png">
             </div>
         </div>
 
