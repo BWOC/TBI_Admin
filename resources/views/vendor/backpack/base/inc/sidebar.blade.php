@@ -35,9 +35,10 @@
                     <div class="collapse" id="usermenu">
                       <ul class="nav">
 		      	<li class="nav-item">
-                                <!-- <li routerlinkactive="active"><a href="mailto:{{ Auth::user()->user_email }}"><b class="fa fa-sign-out"></b> <span>{{ trans('backpack::base.logout') }}</span></a></li> -->
+				<a class="nav-link" href="mailto:{{ Auth::user()->user_email }}">
                                 <span class="sidebar-mini"> @ </span>
                                 <span class="sidebar-normal"> {{ Auth::user()->user_email }} </span>
+				</a>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}">
