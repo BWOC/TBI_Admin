@@ -17,9 +17,9 @@ class Program extends Model
 
     protected $table = 'tbi_programs';
     protected $primaryKey = 'id';
-    public $timestamps = true;
-    protected $guarded = ['id'];
-    protected $fillable = ['title','price','graduation_fee','date_start','date_end','payment_schedule','registration_open'];
+    // public $timestamps = false;
+    // protected $guarded = ['id'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -28,22 +28,21 @@ class Program extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
     public function getProgramAttribute()
     {
+        // return Student::find(1)->balance;
         return $this->title;
     }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function applications()
+    public function application()
     {
-        return $this->hasMany('App\Models\Application','tbi_applications');
-    }
-    public function applicant()
-    {
-        return $this->hasMany('App\Models\Applicant','tbi_applicants');
+      return $this->hasOne('App\Models\Application','program_id', 'id');
     }
     /*
     |--------------------------------------------------------------------------

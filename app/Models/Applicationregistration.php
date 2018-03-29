@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Passtype extends Model
+class Applicationregistration extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Passtype extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tbi_passes_legend';
+    protected $table = 'tbi_application_registration';
     protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
@@ -29,21 +29,19 @@ class Passtype extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function pass()
-    {
-        return $this->belongsTo('App\Models\Pass','id','pass_type');
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function getPasstypeAttribute()
+    public function application()
     {
-        $passType = $this->id;
-        return $this->title;
+        return $this->belongsTo('App\Models\Application','application_id','id');//This works! function (ReferencedModel.id, PresentModel.id)
     }
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

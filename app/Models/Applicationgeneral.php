@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Passtype extends Model
+class Applicationgeneral extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Passtype extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tbi_passes_legend';
-    protected $primaryKey = 'id';
+    protected $table = 'tbi_application_general';
+    protected $primaryKey = 'application_id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['application_id','prefix','middle_name','suffix','preferred_name','gender','address_street_1','address_street_2','address_city','address_state','address_zip','address_country','phone_number','ssn','referred_by','photo'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -29,21 +29,22 @@ class Passtype extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function pass()
-    {
-        return $this->belongsTo('App\Models\Pass','id','pass_type');
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function getPasstypeAttribute()
+
+    public function application()
     {
-        $passType = $this->id;
-        return $this->title;
+        return $this->belongsTo('App\Models\Application','id','application_id');//This works! function (ReferencedModel.id, PresentModel.id)
     }
+
+    public function applicant()
+    {
+        return $this->belongsTo('App\Models\Applicant','application_id','id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
