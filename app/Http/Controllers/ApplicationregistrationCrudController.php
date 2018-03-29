@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\PaymentRequest as StoreRequest;
-use App\Http\Requests\PaymentRequest as UpdateRequest;
+use App\Http\Requests\ApplicationregistrationRequest as StoreRequest;
+use App\Http\Requests\ApplicationregistrationRequest as UpdateRequest;
 
-class PaymentCrudController extends CrudController
+class ApplicationregistrationCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class PaymentCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Payment');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/payment');
-        $this->crud->setEntityNameStrings('payment', 'payments');
+        $this->crud->setModel('App\Models\Applicationregistration');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/applicationregistration');
+        $this->crud->setEntityNameStrings('applicationregistration', 'applicationregistrations');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,67 +28,13 @@ class PaymentCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        // $this->crud->setFromDb();
+        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
-
-        $this->crud->addField([
-            'name'  => 'student_id',
-            'label' => 'Student Name',
-            'type'  => 'select',
-            'entity' => 'student',
-            'attribute' => 'studentName',
-            'model' => 'App\Models\Student',
-            'tab'   => 'Status',
-        ], 'update/create/both');
-
-        $this->crud->addField([
-            'name'  => 'program_id',
-            'label' => 'Program',
-            'type'  => 'select',
-            'entity' => 'program',
-            'attribute' => 'program',
-            'model' => 'App\Models\Program',
-            'tab'   => 'Status',
-        ], 'update/create/both');
-
-        $this->crud->addField([
-        	'name' => 'amount',
-          'type'  => 'number',
-          'prefix' => "$",
-          'suffix' => ".00",
-          'attributes' => ["step" => "any"],
-        	'label' => "Amount"
-      	]);
-
-
-
-        $this->crud->addField([
-        	'name' => 'payment_type',
-          'type'  => 'text',
-        	'label' => "Type"
-      	]);
-
-        $this->crud->addField([
-            'name'  => 'paid_date',
-            'label' => 'Paid',
-            'type'  => 'date_picker',
-            'date_picker_options' => [
-                'format' => 'mm/dd/yyyy',
-            ]
-        ], 'update/create/both');
-
-        $this->crud->addField([
-        	'name' => 'description',
-          'type'  => 'textarea',
-        	'label' => "Description"
-      	]);
-
-
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -97,68 +43,34 @@ class PaymentCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
-
-
         $this->crud->addColumn([
-            'label' => 'Program',
+            'label' => 'Prospective Applicant',
             'type' => "select",
-            'name' => 'program_id',
-            'entity' => 'program',
-            'attribute' => 'program',
-            'model' => 'App\Models\Program'
+            'name' => 'application_id',
+            'entity' => 'application',
+            'attribute' => 'applicantApplication',
+            'model' => 'App\Models\Application'
         ]);
-
-
         $this->crud->addColumn([
-            'label' => 'Student',
-            'type' => "select",
-            'name' => 'student_id',
-            'entity' => 'student',
-            'attribute' => 'studentBalance',
-            'model' => 'App\Models\Student'
+            'name' => 'info_confirmed',
+            'type' => "check",
+            'label' => 'Info'
         ]);
-
-
-        // $this->crud->addColumn([
-        //     'label' => 'Balance',
-        //     'type' => "select",
-        //     'name' => 'student_id',
-        //     'entity' => 'balance',
-        //     'attribute' => 'balance',
-        //     'model' => 'App\Models\Balance'
-        // ]);
-
-
-
-
         $this->crud->addColumn([
-            'name' => 'amount',
-            'type' => "decimal",
-            'label' => 'Amount'
+            'name' => 'medical_confirmed',
+            'type' => "check",
+            'label' => 'Medic'
         ]);
-
-
-
         $this->crud->addColumn([
-            'name' => 'payment_type',
+            'name' => 'checked_in',
+            'type' => "check",
+            'label' => 'Checked In'
+        ]);
+        $this->crud->addColumn([
+            'name' => 'registration_notes',
             'type' => "text",
-            'label' => 'Payment Type'
+            'label' => 'Notes'
         ]);
-
-        $this->crud->addColumn([
-            'name' => 'description',
-            'type' => "text",
-            'label' => 'Description'
-        ]);
-
-        $this->crud->addColumn([
-            'name' => 'paid_date',
-            'type' => "date",
-            'label' => 'Paid'
-        ]);
-
-        //$this->crud->setFromDb();
-
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
         // $this->crud->addButton($stack, $name, $type, $content, $position); // add a button; possible types are: view, model_function
@@ -218,56 +130,6 @@ class PaymentCrudController extends CrudController
     {
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
-
-        // DB::table('users')
-        //     ->where('id', 1)
-        //     ->update(['votes' => 1]);
-
-        // $user = App\User::find(1);
-
-        // //Pull the new payment
-        // $currentPayment = $this->amount;
-        //
-        // //Pull the pre-existing student balance
-        // $studentBalance = $this->balance;
-        // $studentBalanceFigure = $studentBalance->account_balance;
-        //
-        // //Calculate new balance
-        // $studentBalanceFigure = $studentBalanceFigure + $currentPayment;
-        //
-        // //Update the Student's Balance with the newly calulated balances
-        // $studentBalance->account_balance = $studentBalanceFigure;
-        //
-        // //Push the updated balance to the student balance table
-        // // $studentBalance->balances()->update($studentBalance);
-        // $studentBalance->update($studentBalance);
-
-        // $paymentbalance = $this->balance;
-
-        $currentPayment = $request->amount;
-        $studentID = $request->student_id;
-
-
-
-        // $paymentbalance = $request->balance;
-        // $paymentbalance = \DB::table('tbi_applicants_account_balance')->where('id',$studentID)->get();
-        $paymentbalance = \App\Models\Balance::find($studentID);
-
-
-        // Fetch the Old Balance
-        $paymentbalancefigure = $paymentbalance->account_balance;
-
-        // Calculate the new balance
-        $paymentbalancefigure = $currentPayment + $paymentbalancefigure;
-
-        // Place the new balance in the row
-        $paymentbalance->account_balance = $paymentbalancefigure;
-
-        //Save the Row in the Balance Table
-        $paymentbalance->save();
-
-        // echo $paymentstudent->first_name;
-
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
@@ -277,7 +139,6 @@ class PaymentCrudController extends CrudController
     {
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
-
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;

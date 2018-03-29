@@ -124,7 +124,7 @@ class PassCrudController extends CrudController
             'type' => "select",
             'name' => 'student_id',
             'entity' => 'student',
-            'attribute' => 'studentName',
+            'attribute' => 'studentPasses',
             'model' => 'App\Models\Student'
         ]);
 

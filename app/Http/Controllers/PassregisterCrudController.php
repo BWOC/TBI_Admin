@@ -126,6 +126,7 @@ class PassregisterCrudController extends CrudController
             'label' => 'Custom Passes'
         ]);
 
+
         $this->crud->addColumn([
             'label' => 'Program',
             'type' => "select",

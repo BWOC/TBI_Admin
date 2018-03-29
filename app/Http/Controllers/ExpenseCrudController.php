@@ -138,7 +138,7 @@ class ExpenseCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'expense_type',
             'type' => "text",
-            'label' => 'Expense Type'
+            'label' => 'Type'
         ]);
 
         $this->crud->addColumn([
