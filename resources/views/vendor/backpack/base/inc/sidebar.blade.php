@@ -28,7 +28,7 @@
                 <div class="info">
                     <a class="collapsed" data-toggle="collapse" href="#usermenu">
                         <span>
-                            {{ Auth::user()->display_name }} <br>{{ Auth::user()->user_email }}
+                            <h4><b>{{ Auth::user()->display_name }}</b></h4> <br><p>{{ Auth::user()->user_email }}</p>
                             <b class="caret"></b>
                         </span>
                     </a>
