@@ -33,7 +33,7 @@
     <!-- <link rel="stylesheet" href="{{ asset('vendor/backpack/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/material-dashboard.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('../css/material_dashboard/material-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('../css/material-dashboard/material-dashboard.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('vendor/backpack/demo.css') }}"> -->
 
 
