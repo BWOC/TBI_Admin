@@ -17,7 +17,8 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/', function () {
-    return redirect('admin');
+    //return redirect('admin');
+    return view('welcome');
 });
 
 // --------------------
