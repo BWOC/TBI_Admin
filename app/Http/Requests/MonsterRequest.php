@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class MonsterRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
 {
     /**
@@ -25,7 +23,7 @@ class MonsterRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'text' => 'required|min:5|max:255',
         ];
     }
 
