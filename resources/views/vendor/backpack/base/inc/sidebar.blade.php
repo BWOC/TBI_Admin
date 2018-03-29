@@ -23,7 +23,7 @@
 
             <div class="user">
                 <div class="photo">
-                    <img src="https://placehold.it/160x160/00a65a/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" alt="User Image">
+                    <img src="https://placehold.it/160x160/00a65a/ffffff/&text={{ mb_substr(Auth::user()->display_name, 0, 1) }}" alt="User Image">
                 </div>
                 <div class="info">
                     <a class="collapsed" data-toggle="collapse" href="#usermenu">
@@ -34,6 +34,11 @@
                     </a>
                     <div class="collapse" id="usermenu">
                       <ul class="nav">
+		      	<li class="nav-item">
+                                <!-- <li routerlinkactive="active"><a href="mailto:{{ Auth::user()->user_email }}"><b class="fa fa-sign-out"></b> <span>{{ trans('backpack::base.logout') }}</span></a></li> -->
+                                <span class="sidebar-mini"> @ </span>
+                                <span class="sidebar-normal"> {{ Auth::user()->user_email }} </span>
+                          </li>
                           <li class="nav-item">
                               <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}">
                                 <!-- <li routerlinkactive="active"><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><b class="fa fa-sign-out"></b> <span>{{ trans('backpack::base.logout') }}</span></a></li> -->
