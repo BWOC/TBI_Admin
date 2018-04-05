@@ -35,6 +35,9 @@ Route::group([
     CRUD::resource('registration', 'ApplicationRegistrationCrudController');
     CRUD::resource('medical', 'ApplicationMedicalCrudController');
     CRUD::resource('dorm', 'ApplicationDormCrudController');
+    CRUD::resource('passregister', 'PassregisterCrudController');
+    CRUD::resource('pass', 'PassCrudController');
+    CRUD::resource('absence', 'AbsenceCrudController');
     
 });
 
