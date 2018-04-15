@@ -16,6 +16,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/callback', 'GoogleAuthController@callback');
 });
 
+Route::get('laravel-version', function()
+{
+$laravel = app();
+return "Your Laravel version is ".$laravel::VERSION;
+});
+
 Route::get('/', function () {
     return redirect('admin');
 });
