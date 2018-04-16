@@ -44,9 +44,9 @@ Route::group([
     CRUD::resource('passregister', 'PassregisterCrudController');
     CRUD::resource('pass', 'PassCrudController');
     CRUD::resource('absence', 'AbsenceCrudController');
-    CRUD::resource('teamdcdepartment', 'Admin\TeamdcdepartmentCrudController');
-    CRUD::resource('teamdcassignment', 'Admin\TeamdcassignmentCrudController');
-    CRUD::resource('comment', 'Admin\StudentcommentCrudController');
+    CRUD::resource('teamdcdepartment', 'TeamdcdepartmentCrudController');
+    CRUD::resource('teamdcassignment', 'TeamdcassignmentCrudController');
+    CRUD::resource('comment', 'StudentcommentCrudController');
 });
 
 Route::get('api/article', 'Api\ArticleController@index');
