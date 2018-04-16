@@ -196,6 +196,36 @@
                     <!-- .collapse / Student Life Dropdown Menu -->
                   </li>
                   <!-- li.active / Student Life -->
+		  
+		  <?php if (Auth::user()->user_nicename == "andrew"): ?>
+                    <li class="nav-item ">
+                      <a class="nav-link" data-toggle="collapse" href="#discoverycamp">
+                          <i class="material-icons">border_all</i>
+                          <p> DC Admin
+                             <b class="caret"></b>
+                          </p>
+                      </a>
+
+                      <div class="collapse" id="discoverycamp">
+                          <ul class="nav">
+                              <li class="nav-item ">
+                                  <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/teamdcassignment') }}">
+                                    <span class="sidebar-mini"> DA </span>
+                                    <span class="sidebar-normal"> DC Assignments </span>
+                                  </a>
+                              </li>
+                              <li class="nav-item ">
+                                  <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/teamdcdepartment') }}">
+                                    <span class="sidebar-mini"> DD </span>
+                                    <span class="sidebar-normal"> DC Departments </span>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      <!-- .collapse / Discovery Camp Dropdown Menu -->
+                    </li>
+                    <!-- li.active / Discovery Camp -->
+                  <?php endif; ?>
 
 
                   <li class="nav-item ">
