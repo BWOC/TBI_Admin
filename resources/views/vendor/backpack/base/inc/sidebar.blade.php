@@ -83,6 +83,14 @@
                                   <span class="sidebar-normal"> Registration Status </span>
                                 </a>
                             </li>
+			    <?php if (Auth::user()->user_nicename == "andrew"): ?>
+                              <li class="nav-item ">
+                                  <a class="nav-link" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/comment') }}">
+                                    <span class="sidebar-mini"> SC </span>
+                                    <span class="sidebar-normal"> Student Comments </span>
+                                  </a>
+                              </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                     <!-- .collapse / TBI Applications Dropdown Menu -->
